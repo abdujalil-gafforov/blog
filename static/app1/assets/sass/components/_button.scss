@@ -1,0 +1,41 @@
+.btn {
+  @include button(
+    $color: #fff,
+    $fsz: emCal(16, 14),
+    $fw: 700,
+    $up: true,
+    $bg: setColor(yellow),
+    $pd: emCal(14, 20) emCal(14, 30),
+    $br: emCal(14, 5)
+  );
+  display: inline-block;
+  @include mq(sm) {
+    font-size: 14px;
+  }
+  &.-normal {
+  }
+  &.-gray {
+    @include button(
+      $color: setColor(subTitle),
+      $fsz: emCal(16, 14),
+      $fw: 700,
+      $up: true,
+      $bg: #fff,
+      $pd: emCal(14, 20) emCal(14, 30),
+      $br: emCal(14, 5)
+    );
+    border: 1px solid setColor(border);
+  }
+  &.-light-overlay {
+    @include button(
+      $color: setColor(title),
+      $fsz: emCal(16, 14),
+      $fw: 700,
+      $up: true,
+      $bg: setColor(lightOverlay),
+      $pd: emCal(14, 20) emCal(14, 30),
+      $br: emCal(14, 5)
+    );
+    display: inline-block;
+  }
+}

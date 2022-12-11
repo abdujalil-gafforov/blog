@@ -1,0 +1,45 @@
+/***************************
+	Subcribe bar
+***************************/
+.subcribe-bar {
+  font-size: 16px;
+  background-color: setColor(lightOverlay);
+  padding: emCal(16, 50);
+  margin-bottom: remCal(70);
+  @include mq(md) {
+    font-size: 14px;
+  }
+  &__content {
+    h5 {
+      @include typo($fsz: emCal(16, 15));
+      margin-bottom: emCal(15, 15);
+    }
+    h3 {
+      @include typo($fsz: emCal(16, 30), $fw: 700);
+    }
+    @include mq(md) {
+      margin-bottom: emCal(16, 30);
+    }
+  }
+  &__form {
+    display: flex;
+    input {
+      @include input($pd: 0 emCal(16, 20), $height: 50px, $brd: emCal(16, 5));
+      margin-right: emCal(16, 15);
+    }
+    .btn {
+      height: 50px;
+      padding: 0 emCal(16, 20);
+    }
+    @include mq(md) {
+      input {
+        margin-right: 0;
+      }
+    }
+    @include mq(sm) {
+      .btn.-normal {
+        padding: 0 emCal(16, 15);
+      }
+    }
+  }
+}

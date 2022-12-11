@@ -1,0 +1,19 @@
+/***************************
+	Social block
+***************************/
+.social-block {
+  a {
+    @include button(
+      $color: setColor(title),
+      $bg: setColor(lightOverlay),
+      $lh: emCal(15, 50),
+      $pd: 0,
+      $br: 999px
+    );
+    display: inline-block;
+    height: emCal(15, 50);
+    width: emCal(15, 50);
+    margin-right: emCal(15, 15);
+    @include spaceTrim();
+  }
+}

@@ -1,0 +1,70 @@
+{% load static %}
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="footer-col -about">
+                        <div class="center-line-title">
+                            <h5>About us</h5>
+                        </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed et dolore magna aliqua.
+                            Quis ipsum suspendisse ultrices gravida lacus vel facilisis. </p>
+                        <div class="contact-method">
+                            <p><i class="fas fa-map-marker-alt"></i>{{ about.address }}</p>
+                            <p><i class="far fa-mobile-android"></i>{{ about.phone_number }}</p>
+                            <p><i class="far fa-envelope-open"></i>{{ about.email }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="footer-col -feature-post">
+                        <div class="center-line-title">
+                            <h5>Feature posts</h5>
+                        </div>
+                        <div class="feature-post-block">
+                            {% for future_post in future_posts %}
+                                <div class="post-card -tiny">
+                                    <a class="card__cover" href="#">
+                                        <!-- img size 360 x 360 -->
+                                        <img src="{{ future_post.image.url}}"
+                                             alt="Best Open Source Tools For Developers">
+                                    </a>
+                                    <div class="card__content">
+                                        <h5 class="card__content-category">Open source</h5>
+                                        <a class="card__content-title" href="#">{{ future_post.title }}</a>
+                                        <div class="card__content-info">
+                                            <div class="info__time"><i class="far fa-clock"></i>
+                                                <p>{{ future_post.created_at }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6000 col-lg-4">
+                    <div class="footer-col -util">
+                        <div class="row">
+                            <!-- Social Media -->
+                            <div class="col-12 col-md-6 col-lg-12">
+                                <div class="center-line-title">
+                                    <h5>Follow us</h5>
+                                </div>
+                                <div class="social-block"><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-telegram-plane"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2022, Fuse - All rights reserved.</p>
+        </div>
+    </div>
+</footer>

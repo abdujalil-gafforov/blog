@@ -1,0 +1,46 @@
+/***************************
+	Player color
+***************************/
+$plyr-color: setColor(yellow);
+$plyr-color-dark: setColor(title);
+
+//Progress bar background
+.plyr--full-ui input[type="range"] {
+  color: $plyr-color;
+}
+
+//Audio
+.plyr--audio {
+  color: $plyr-color-dark;
+  .plyr__control.plyr__tab-focus,
+  .plyr__control:hover,
+  .plyr__control[aria-expanded="true"] {
+    background: $plyr-color;
+  }
+  input[type="range"] {
+    color: $plyr-color-dark;
+  }
+}
+
+//Video
+.plyr--video {
+  .plyr__control.plyr__tab-focus,
+  .plyr__control:hover,
+  .plyr__control[aria-expanded="true"] {
+    background: $plyr-color;
+  }
+}
+
+//Control button background
+.plyr__control--overlaid {
+  background: rgba($plyr-color, 0.8);
+}
+
+.plyr__control.plyr__tab-focus {
+  box-shadow: 0 0 0 5px rgba($plyr-color, 0.5);
+}
+
+.plyr__menu__container
+  .plyr__control[role="menuitemradio"][aria-checked="true"]::before {
+  background: $plyr-color;
+}

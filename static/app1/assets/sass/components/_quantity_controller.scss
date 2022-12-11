@@ -1,0 +1,20 @@
+/***************************
+	Quantity controller
+***************************/
+.quantity-controller {
+  padding: 0 emCal(16, 20);
+  border: 1px solid setColor(yellow);
+  display: flex;
+  align-items: center;
+  margin-right: emCal(16, 10);
+  height: emCal(16, 50);
+  input {
+    border: 0;
+    text-align: center;
+    max-width: emCal(16, 60);
+    @include typo($fsz: emCal(16, 15), $fw: 600);
+  }
+  a {
+    @include link(setColor(title), setColor(yellow), $fsz: emCal(16, 16));
+  }
+}

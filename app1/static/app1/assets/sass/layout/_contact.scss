@@ -1,0 +1,54 @@
+/***************************
+	Contact
+***************************/
+.contact-us {
+  font-size: 16px;
+  margin-bottom: remCal(60);
+  .contact-title {
+    @include typo($fsz: emCal(16, 22), $fw: 700);
+    margin-bottom: emCal(22, 30);
+  }
+  &__info {
+    margin-bottom: remCal(30);
+    .contact-description {
+      @include typo($fsz: emCal(16, 15), $lh: emCal(15, 26), $fw: 400);
+      margin-bottom: emCal(15, 30);
+    }
+    .contact-method {
+      &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: emCal(16, 20);
+        i {
+          height: emCal(16, 50);
+          width: emCal(16, 50);
+          border: 1px solid setColor(border);
+          border-radius: 999px;
+          text-align: center;
+          line-height: emCal(16, 50);
+          color: setColor(yellow);
+          margin-right: emCal(16, 20);
+        }
+      }
+    }
+  }
+  &__form {
+    @include mq(md) {
+      margin-top: remCal(50);
+    }
+    form {
+      input {
+        @include input(
+          $pd: emCal(14, 15) emCal(14, 20),
+          $width: 100%,
+          $brd: emCal(14, 5)
+        );
+        margin-bottom: emCal(14, 20);
+      }
+      textarea {
+        @include textarea($pd: emCal(14, 20), $brd: emCal(14, 5));
+        margin-bottom: emCal(14, 20);
+      }
+    }
+  }
+}

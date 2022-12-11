@@ -1,0 +1,32 @@
+.blog-sidebar {
+  font-size: 16px;
+  padding-left: emCal(16, 30);
+  @include mq(lg) {
+    padding-left: 0;
+  }
+  @include mq(md) {
+    margin-bottom: emCal(16, 50);
+  }
+  @include mq(sm) {
+    font-size: 15px;
+  }
+  .blog-sidebar-section {
+    margin-bottom: remCal(60);
+    &.-category {
+      .category {
+        margin-bottom: emCal(16, 15);
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+    &.-trending-post {
+      .trending-post {
+        margin-bottom: emCal(16, 30);
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

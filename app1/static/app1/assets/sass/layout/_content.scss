@@ -1,0 +1,12 @@
+/***************************
+	Content
+***************************/
+#content {
+  padding-top: remCal(180);
+  &.no-pd {
+    padding-top: remCal(70);
+  }
+  &.breadcrumb-pd {
+    padding-top: remCal(140);
+  }
+}

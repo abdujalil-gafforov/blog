@@ -1,0 +1,34 @@
+/***************************
+	Pagination
+***************************/
+.pagination {
+  ul {
+    li {
+      display: inline-block;
+      margin-right: 5px;
+      @include spaceTrim();
+      &.active {
+        a {
+          background-color: #000;
+          color: #fff;
+          &:hover {
+            background-color: #000;
+            color: #fff;
+          }
+        }
+      }
+      a {
+        @include button(
+          $fw: 400,
+          $pd: 0,
+          $color: setColor(subTitle),
+          $br: 999px
+        );
+        height: 40px;
+        width: 40px;
+        line-height: 40px;
+        display: block;
+      }
+    }
+  }
+}

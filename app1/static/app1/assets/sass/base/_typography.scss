@@ -1,0 +1,41 @@
+/***************************
+	Typography
+***************************/
+
+//Generator some default font color
+@each $name, $value in $colors {
+  .text-#{$name} {
+    color: $value;
+  }
+}
+
+.center-line-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: emCal(16, 40);
+  font-size: 16px;
+  &:after {
+    content: "";
+    height: 1px;
+    flex-grow: 1;
+    display: block;
+    background-color: setColor(border);
+  }
+  h5 {
+    @include typo($fsz: emCal(16, 18), $fw: 600, $lh: 1, $up: true);
+    margin-right: 15px;
+  }
+  &.-large {
+    h5 {
+      font-size: emCal(16, 26);
+    }
+  }
+  &.-medium {
+    h5 {
+      font-size: emCal(16, 18);
+    }
+  }
+  &.-mb-0 {
+    margin-bottom: 0;
+  }
+}

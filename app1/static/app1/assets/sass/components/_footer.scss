@@ -1,0 +1,47 @@
+/***************************
+	Footer
+***************************/
+footer {
+  font-size: 16px;
+  .footer-content {
+    padding: remCal(80) 0 remCal(60);
+    .footer-col {
+      @include mq(lg) {
+        margin-bottom: emCal(16, 40);
+      }
+      &.-about {
+        p {
+          @include typo(
+            $fsz: emCal(16, 15),
+            $lh: emCal(15, 26),
+            $fw: 400,
+            $color: setColor(subTitle)
+          );
+        }
+        .contact-method {
+          margin-top: 15px;
+          p {
+            i {
+              width: 8px;
+              margin-right: emCal(16, 21);
+              color: setColor(yellow);
+              text-align: center;
+              font-size: emCal(16, 15);
+            }
+          }
+        }
+      }
+      &.-util {
+        .tags-group {
+          margin-bottom: emCal(16, 35);
+        }
+      }
+    }
+  }
+  .copyright {
+    padding: emCal(16, 25);
+    border-top: 1px solid setColor(border);
+    text-align: center;
+    @include typo($fsz: emCal(16, 14), $fw: 400, $lh: emCal(14, 20));
+  }
+}

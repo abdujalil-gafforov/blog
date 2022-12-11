@@ -1,0 +1,135 @@
+/***************************
+	Checkout
+***************************/
+.checkout {
+  font-size: 16px;
+  margin-bottom: remCal(80);
+  &-title {
+    @include typo($fsz: emCal(16, 18), $fw: 600, $up: true);
+    padding-bottom: emCal(18, 12);
+    border-bottom: 1px solid setColor(border);
+    display: block;
+    margin-bottom: emCal(16, 30);
+  }
+  &__coupon-alert {
+    @include typo($fsz: emCal(16, 15), $lh: emCal(15, 26));
+    background-color: setColor(yellow);
+    display: block;
+    text-align: center;
+    padding: 1em;
+    margin-bottom: remCal(60);
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__form {
+    form {
+      .input-group {
+        margin-bottom: emCal(16, 30);
+        label {
+          @include typo($fsz: emCal(16, 15));
+          display: block;
+          margin-bottom: emCal(16, 15);
+        }
+        input {
+          @include input($pd: emCal(16, 15) emCal(16, 20), $brd: emCal(14, 5));
+          &.mb-20 {
+            margin-bottom: emCal(16, 20);
+          }
+        }
+        &.mb-15 {
+          margin-bottom: emCal(16, 15);
+        }
+      }
+      .checkbox-group {
+        margin-bottom: emCal(16, 30);
+        &.mb-15 {
+          margin-bottom: emCal(16, 15);
+        }
+      }
+      .label-description {
+        @include typo($fsz: emCal(16, 14), $lh: emCal(14, 24), $fw: 400);
+        margin-bottom: emCal(16, 30);
+      }
+    }
+  }
+  &__total {
+    background-color: setColor(lightOverlay);
+    padding: emCal(16, 25) emCal(16, 30);
+    table {
+      width: 100%;
+      th,
+      td {
+        &:first-child {
+          text-align: left;
+        }
+      }
+      th,
+      td {
+        &:last-child {
+          text-align: right;
+        }
+      }
+      &.total__provisional {
+        border-bottom: 1px solid setColor(border);
+        margin-bottom: emCal(16, 10);
+        thead {
+          th {
+            padding: emCal(16, 10) 0;
+            @include typo($fsz: emCal(16, 18), $fw: 600);
+          }
+        }
+        tbody {
+          td {
+            padding: emCal(16, 10) 0;
+            &:first-child {
+              span {
+                float: left;
+                @include typo(
+                  $color: setColor(yellow),
+                  $fw: 600,
+                  $fsz: emCal(16, 15),
+                  $lh: emCal(16, 24)
+                );
+                margin-right: emCal(15, 5);
+              }
+              p {
+                @include typo(
+                  $fsz: emCal(16, 15),
+                  $fw: 400,
+                  $lh: emCal(16, 24)
+                );
+              }
+            }
+          }
+        }
+      }
+      &.total__final {
+        border-bottom: 1px solid setColor(border);
+        margin-bottom: emCal(16, 30);
+        tbody {
+          td {
+            padding: emCal(16, 10) 0;
+            &:first-child {
+              @include typo($fsz: emCal(16, 15), $fw: 400);
+            }
+            &:last-child {
+              @include typo($fsz: emCal(16, 18), $fw: 600);
+            }
+          }
+        }
+      }
+    }
+    .total__payment-method {
+      &__block {
+        margin-bottom: emCal(16, 25);
+        .payment__content {
+          @include typo($fsz: emCal(16, 14), $lh: emCal(14, 24), $fw: 400);
+        }
+      }
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+}

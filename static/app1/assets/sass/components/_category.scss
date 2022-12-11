@@ -1,0 +1,126 @@
+/***************************
+	Category
+***************************/
+.category {
+  .category__background {
+    @include prefix(transition, $transition);
+    background: {
+      position: center;
+      size: cover;
+      repeat: no-repeat;
+    }
+  }
+  &.-bar {
+    font-size: 14px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: emCal(14, 25);
+    overflow: hidden;
+    border-radius: emCal(14, 5);
+    &:hover {
+      .category__background {
+        transform: scale(1.1);
+      }
+    }
+    .category__background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: -1;
+    }
+    h5 {
+      @include typo($fsz: emCal(14, 14), $color: #fff, $fw: 700, $up: true);
+      &.quantity {
+        height: emCal(14, 35);
+        width: emCal(14, 35);
+        background-color: #ebebeb;
+        text-align: center;
+        line-height: emCal(14, 35);
+        border-radius: 999px;
+        color: setColor(title);
+      }
+    }
+  }
+  &.-round {
+    display: block;
+    text-align: center;
+    @include link(setColor(title), setColor(yellow), 16px, $up: true);
+    &:hover {
+      .category__background {
+        transform: rotate(10deg);
+      }
+    }
+    .category__background {
+      height: emCal(16, 200);
+      width: emCal(16, 200);
+      margin-bottom: emCal(16, 30);
+      border-radius: 999px;
+      margin: 0 auto;
+      margin-bottom: emCal(16, 30);
+    }
+    h5 {
+      display: inline-block;
+      font-weight: 700;
+      &.quantity {
+        &::before {
+          content: "(";
+        }
+        &::after {
+          content: ")";
+        }
+      }
+    }
+  }
+  &.-square {
+    display: block;
+    text-align: center;
+    @include link(setColor(title), setColor(yellow), 16px, $up: true);
+    &:hover {
+      .category__background {
+        transform: translateY(-5px);
+      }
+    }
+    .category__background {
+      height: emCal(16, 105);
+      width: 100%;
+      border-radius: emCal(16, 5);
+      margin: 0 auto;
+      margin-bottom: emCal(16, 15);
+    }
+    h5 {
+      display: inline-block;
+      font-weight: 700;
+      &.quantity {
+        display: none;
+      }
+    }
+  }
+  &.-theme--violet {
+    &.-round {
+      &:hover {
+        color: setColor(violet);
+      }
+    }
+    &.-square {
+      &:hover {
+        color: setColor(violet);
+      }
+    }
+  }
+  &.-theme--blue {
+    &.-round {
+      &:hover {
+        color: setColor(blue);
+      }
+    }
+    &.-square {
+      &:hover {
+        color: setColor(blue);
+      }
+    }
+  }
+}

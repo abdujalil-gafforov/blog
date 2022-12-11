@@ -1,0 +1,81 @@
+{% load static %}
+<header class="theme-default">
+    <div id="search-box">
+        <div class="container">
+            <form action="/" method="POST">
+                <label>
+                    <input type="text" placeholder="Searching for news" name="search"/>
+                </label>
+                <button><i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header-wrapper">
+            <a class="header__logo" href="{% url 'main_view' %}"><img src="{% static 'app1/assets/images/logo1.png' %}"
+                                                                      alt="Logo"/></a>
+            <nav>
+                <ul>
+                    <li class="nav-item {% if request.path == '/' %}active{% endif %}"><a href="{% url 'main_view' %}">Home</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/blog' %}active{% endif %}"><a
+                            href="{% url 'blog_view' %}">Blog</a>
+                        <!-- Blog category drop down -->
+{#                                                <ul class="dropdown-menu">#}
+{#                                                  <li><a href="#">BLOG CATEGORY 1</a></li>#}
+{#                                                  <li><a href="#">BLOG CATEGORY 2</a></li>#}
+{#                                                  <li><a href="#">BLOG CATEGORY 3</a></li>#}
+{#                                                </ul>#}
+                    </li>
+                    <li class="nav-item {% if request.path == '/about' %}active{% endif %}"><a
+                            href="{% url 'about_view' %}">About</a></li>
+                    <li class="nav-item {% if request.path == '/contact' %}active{% endif %}"><a
+                            href="{% url 'contact_view' %}">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header__icon-group"><a href="#" id="search"><i class="fas fa-search"></i></a>
+
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-telegram-plane"></i></a>
+                    <a id="mobile-menu-controller" href="#"><i class="fas fa-bars"></i></a>
+                </div>
+            </div>
+            <div>
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'profile_view' %}" class="header-account"
+                       style='font-family: "DM Sans", sans-serif; color:#111;font-size: 18px;'>
+                        <img src="{{ request.user.photo.url }}" style="width: 60px;padding-right: 5px;"
+                             alt="profile picture">
+                        {{ request.user.first_name }}
+                    </a>
+                    <a href="{% url 'logout' %}" style="
+                    margin: 10px;
+                    color: white;
+                    background-color: #FF273C;
+                    padding: 15px;
+                    font-size: 15px;
+                    border-radius: 3px;
+                    ">LOG OUT</a>
+
+                {% else %}
+                    <a href="{% url 'login_view' %}" style="
+                    margin: 10px;
+                    color: black;
+                    font-size: 17px;
+                    ">LOG IN</a>
+                    <a href="{% url 'signup_view' %}" style="
+                    margin: 10px;
+                    color: white;
+                    background-color: #FF273C;
+                    padding: 15px;
+                    font-size: 15px;
+                    border-radius: 3px;
+                    ">SIGN UP</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>

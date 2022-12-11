@@ -1,0 +1,66 @@
+{% extends 'app1/parts/base.html' %}
+{% load static %}
+{% block main_content %}
+    <div class="no-pd" id="content">
+        <div class="container">
+              <div class="breadcrumb">
+                <ul>
+                  <li>
+                      <a href="index.html"> <i class="fas fa-home"></i>Home</a>
+                    </li>
+                  <li class="active">
+                      <a href="#">About</a>
+                    </li>
+                </ul>
+              </div>
+          <div class="about-us">
+            <div class="row align-items-center">
+              <div class="col-12 col-sm-8 col-md-6 mx-auto">
+                  <!-- image size 560 x 522 -->
+                <div class="about-us__image">
+                    <img src="{% static 'app1/assets/images/posts/about.png' %}" alt="About us image"/>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <div class="about-us__content">
+                  <h3>Thank you for visit out my website.</h3>
+                  <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam,
+                    eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam 
+                    voluptatem quluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores sit amet vel facilisis 
+                    beatae vitae dicta sunt.</p>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna 
+                      aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus.</p>
+                  <div class="follow">
+                    <p>Follow us:</p>
+                    <div class="social-block">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="subcribe-bar">
+            <div class="row">
+              <div class="col-12 col-md-6">
+                <div class="subcribe-bar__content">
+                  <h5>Don’t miss our future updates!</h5>
+                  <h3>Get Subscribe today!</h3>
+                </div>
+              </div>
+              <div class="col-12 col-md-6">
+                <form class="subcribe-bar__form" action="/">
+                  <input type="text" placeholder="You email"/>
+                  <button class="btn -normal">Subcribe  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+{% endblock %}

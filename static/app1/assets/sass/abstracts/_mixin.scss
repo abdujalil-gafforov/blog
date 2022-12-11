@@ -1,0 +1,267 @@
+//*****************************
+//	Typography
+//*****************************
+
+// $up: Uppercase;
+// $cpt: Capitalize;
+@mixin link(
+  $color,
+  $hvr-color,
+  $fsz: 14px,
+  $fw: 500,
+  $lh: 1,
+  $up: false,
+  $cpt: false,
+  $dashcolor: setColor(yellow),
+  $bottom-dash: false
+) {
+  color: setColor($color);
+  font-size: $fsz;
+  font-weight: $fw;
+  text-decoration: none;
+  line-height: $lh;
+  cursor: pointer;
+  &:hover {
+    color: setColor($hvr-color);
+  }
+  //Transition
+  @include prefix(transition, $transition);
+  //Text decoration
+  @if $up {
+    text-transform: uppercase;
+  }
+  @if $cpt {
+    text-transform: capitalize;
+  }
+
+  @if $bottom-dash {
+    position: relative;
+    padding: 8px 0;
+    overflow: hidden;
+    display: inline-block;
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      height: 3px;
+      width: 100%;
+      background-color: $dashcolor;
+      @include prefix(transition, $transition);
+    }
+    &:hover {
+      &:after {
+        left: 0;
+      }
+    }
+  }
+}
+
+@mixin typo(
+  $color: setColor(title),
+  $fsz: 16px,
+  $fw: 500,
+  $lh: 1,
+  $up: false,
+  $cpt: false
+) {
+  color: setColor($color);
+  font-size: $fsz;
+  font-weight: $fw;
+  line-height: $lh;
+  //Text decoration
+  @if $up {
+    text-transform: uppercase;
+  }
+  @if $cpt {
+    text-transform: capitalize;
+  }
+}
+
+@mixin overflowText($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+@mixin button(
+  $color: setColor(regular),
+  $fsz: 15px,
+  $fw: 600,
+  $lh: 1,
+  $up: false,
+  $bg: setColor(lightOverlay),
+  $pd: 15px 30px,
+  $br: 0
+) {
+  @include typo($color: $color, $fsz: $fsz, $fw: $fw, $lh: $lh, $up: $up);
+  border-radius: $br;
+  background-color: $bg;
+  padding: $pd;
+  text-align: center;
+  border: 0;
+  @include prefix(transition, $transition);
+  &:hover {
+    background-color: darken($color: $bg, $amount: 8%);
+  }
+}
+
+//*****************************
+//	Form
+//*****************************
+// $brd: Boreder-radius;
+
+//Input
+@mixin input(
+  $pd: 20px,
+  $fsz: 14px,
+  $fw: 400,
+  $width: 100%,
+  $height: auto,
+  $brd: 0px,
+  $bg: setColor(white),
+  $color: setColor(subTitle),
+  $ph-color: #aeaeae
+) {
+  background-color: $bg;
+  border: 1px solid setColor(border);
+  height: $height;
+  width: $width;
+  transition: $transition;
+  -webkit-appearance: none;
+  padding: $pd;
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+  @include typo($color: $color, $fsz: $fsz, $fw: $fw, $lh: $height);
+  @include prefix(border-radius, $brd);
+
+  @include input-pseudo-class {
+    @include typo($lh: $height, $fsz: $fsz, $fw: $fw, $color: $ph-color);
+  }
+}
+
+//Textarea
+@mixin textarea(
+  $pd: 20px,
+  $fsz: 14px,
+  $fw: 400,
+  $width: 100%,
+  $height: auto,
+  $brd: 0px,
+  $bg: setColor(white),
+  $color: setColor(subTitle),
+  $ph-color: #aeaeae
+) {
+  background-color: $bg;
+  border: 1px solid setColor(border);
+  height: $height;
+  width: $width;
+  transition: $transition;
+  padding: $pd;
+  font-family: "DM Sans", sans-serif !important;
+  -webkit-appearance: none;
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+  @include typo($color: $color, $fsz: $fsz, $fw: $fw, $lh: $height);
+  @include prefix(border-radius, $brd);
+  @include pseudo-class {
+    @include typo($lh: $height, $fsz: $fsz, $fw: $fw, $color: $ph-color);
+  }
+}
+
+//Select
+@mixin select(
+  $pd-hoz: 15,
+  $width: 100%,
+  $brd: 0px,
+  $height: auto,
+  $default: true
+) {
+  background-color: setColor(white);
+  border: 1px solid setColor(black);
+  height: remCal($height);
+  width: $width;
+  transition: $transition;
+  padding: {
+    right: remCal($pd-hoz);
+    left: remCal($pd-hoz);
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+  @if $default == false {
+    -webkit-appearance: none;
+  }
+  @include typo($lh: $height);
+  @include prefix(border-radius, $brd);
+}
+
+//*****************************
+//	Meadia queries
+//*****************************
+@mixin mq($canvas) {
+  @each $name, $bp in $breakpoint {
+    @if $canvas == $name {
+      @media only screen and (max-width: $bp) {
+        @content;
+      }
+    }
+  }
+}
+
+//*****************************
+//	Cross-browser
+//*****************************
+@mixin prefix($property, $value) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+
+@mixin input-pseudo-class() {
+  @each $prefix in $prefixes {
+    @if $prefix == "moz" {
+      #{"&:-" + $prefix + "-" + "input-placeholder"} {
+        @content;
+        line-height: -moz-block-height;
+      }
+      #{"&::-" + $prefix + "-" + "input-placeholder"} {
+        @content;
+        line-height: -moz-block-height;
+      }
+    } @else {
+      #{"&:-" + $prefix + "-" + "input-placeholder"} {
+        @content;
+      }
+      #{"&::-" + $prefix + "-" + "input-placeholder"} {
+        @content;
+      }
+    }
+  }
+  &:input-placeholder {
+    @content;
+  }
+  &::input-placeholder {
+    @content;
+  }
+}
+
+@mixin pseudo-class() {
+  @each $prefix in $prefixes {
+    #{"&::-" + $prefix + "-" + "placeholder"} {
+      @content;
+    }
+  }
+  &::placeholder {
+    @content;
+  }
+}

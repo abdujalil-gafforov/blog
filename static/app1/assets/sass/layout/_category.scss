@@ -1,0 +1,66 @@
+/***************************
+	Post Category
+***************************/
+.category {
+  font-size: 16px;
+  margin-bottom: remCal(80);
+  @include mq(md) {
+    font-size: 14px;
+  }
+  .category__header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: emCal(16, 50);
+    .category__header__text {
+      h5 {
+        @include typo($color: setColor(title), $fsz: emCal(16, 22));
+        display: inline-block;
+        margin-right: emCal(22, 5);
+      }
+      a {
+        @include link(
+          setColor(title),
+          setColor(subTitle),
+          $fsz: emCal(16, 22),
+          $fw: 700
+        );
+        display: inline-block;
+        text-decoration: underline;
+      }
+    }
+    .category__header__filter {
+      a {
+        color: setColor(regular);
+        font-size: 18px;
+        &:first-child {
+          margin-right: emCal(18, 15);
+        }
+        &.active {
+          color: setColor(title);
+        }
+      }
+    }
+  }
+  .category_content {
+    margin-bottom: remCal(20);
+    width: 100%;
+    .post-card {
+      margin-bottom: emCal(16, 30);
+    }
+    &.-grid {
+      .post-card {
+        width: calc(50% - 10px);
+        @include mq(sm) {
+          width: 100%;
+        }
+      }
+    }
+    &.-list {
+      .post-card {
+        .card__cover {
+          max-height: emCal(16, 220);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+blog, admin tomonidan tasdiqlanishi (adminkada status bolishi, active, cancel, pending)
+ckeditor ulanishi ruyhatdan otgan odam blog qosha olishi
+
+
+
+1. register
+2. reset password
+3. change password
+4. confirm email (one time link)
+5. sms yuborish
+
+e-commerce
+blog-website
+
+
+task olx.uz tayyorlash
+asosiy oynada qidiruv bolishi
+asosiy page 20ta elon
+category

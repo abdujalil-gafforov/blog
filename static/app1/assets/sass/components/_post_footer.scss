@@ -1,0 +1,253 @@
+/***************************
+	Post footer
+***************************/
+.post-footer {
+  font-size: 16px;
+  &__tags {
+    margin-bottom: emCal(16, 50);
+    .tags-group {
+      .tag-btn {
+        margin-bottom: 0;
+        padding: emCal(16, 15) emCal(16, 15);
+        font-size: emCal(16, 14);
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+  &__author {
+    margin-bottom: emCal(16, 60);
+    text-align: center;
+    background-color: setColor(lightOverlay);
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #fff;
+      height: emCal(16, 60);
+      z-index: 0;
+    }
+    .author__avatar {
+      height: 120px;
+      width: 120px;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 0 auto;
+      margin-bottom: emCal(22, 25);
+      position: inherit;
+      z-index: 1;
+      img {
+        @include imgCenter();
+      }
+    }
+    .author__info {
+      padding: 0 emCal(16, 60) emCal(16, 30);
+      @include mq(md) {
+        padding: 0 emCal(16, 30) emCal(16, 20);
+      }
+      h5 {
+        @include typo($fsz: emCal(16, 22), $fw: 700);
+        margin-bottom: emCal(22, 10);
+      }
+      p {
+        @include typo($fsz: emCal(16, 15), $fw: 400, $lh: emCal(15, 27));
+        margin-bottom: emCal(15, 10);
+      }
+      .social-media {
+        a {
+          @include link(setColor(title), setColor(yellow), $fsz: 1em);
+          margin: 0 emCal(16, 10);
+          @include spaceTrim();
+        }
+      }
+    }
+  }
+  &__related {
+    display: flex;
+    margin-bottom: emCal(16, 60);
+    &__item {
+      flex: 1 1 50%;
+      max-width: 50%;
+      &:hover {
+        &.-prev {
+          a {
+            i {
+              margin-right: emCal(16, 20);
+            }
+          }
+        }
+        &.-next {
+          a {
+            i {
+              margin-left: emCal(16, 20);
+            }
+          }
+        }
+      }
+      a {
+        margin-bottom: emCal(16, 20);
+        display: block;
+        @include link(
+          setColor(title),
+          setColor(yellow),
+          $fsz: emCal(16, 15),
+          $up: true,
+          $fw: 600
+        );
+        i {
+          @include prefix(transition, $transition);
+        }
+      }
+      &__content {
+        display: flex;
+        img {
+          @include imgCenter(emCal(16, 70), emCal(16, 105));
+          border-radius: emCal(16, 3);
+        }
+        .card__content-title {
+          font-size: emCal(16, 18);
+        }
+      }
+      &.-prev {
+        a {
+          i {
+            margin-right: emCal(16, 10);
+          }
+        }
+        .post-footer__related__item__content {
+          img {
+            margin-right: emCal(16, 23);
+          }
+        }
+      }
+      &.-next {
+        a {
+          text-align: right;
+          i {
+            margin-left: emCal(16, 10);
+          }
+        }
+        .post-footer__related__item__content {
+          img {
+            margin-left: emCal(16, 23);
+          }
+        }
+      }
+    }
+    @include mq(sm) {
+      flex-direction: column;
+      &__item {
+        flex: 1 1 100%;
+        max-width: 100%;
+        &.-prev {
+          margin-bottom: emCal(16, 30);
+        }
+      }
+    }
+  }
+  &__comment {
+    &__detail {
+      margin-bottom: emCal(16, 60);
+      .comment__item {
+        margin-bottom: emCal(16, 40);
+        &__avatar {
+          height: emCal(16, 90);
+          width: emCal(16, 90);
+          float: left;
+          margin-right: emCal(16, 25);
+          img {
+            @include imgCenter;
+          }
+        }
+        &__content {
+          &__header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: emCal(16, 20);
+            h5 {
+              @include typo($fsz: emCal(16, 18), $cpt: true, $fw: 600);
+            }
+            .data {
+              p {
+                @include typo(
+                  $fsz: emCal(16, 13),
+                  $cpt: true,
+                  $color: setColor(regular)
+                );
+                display: inline-block;
+                margin: 0 emCal(13, 10);
+                @include spaceTrim;
+                i {
+                  margin-right: emCal(16, 10);
+                }
+              }
+            }
+            @include mq(sm) {
+              flex-direction: column;
+              h5 {
+                margin-bottom: emCal(16, 10);
+              }
+            }
+          }
+          p {
+            @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27), $fw: 400);
+          }
+        }
+        &__reply {
+          padding-left: emCal(16, 115);
+          margin-top: emCal(16, 40);
+          .comment__item {
+            margin-bottom: 0;
+          }
+        }
+        @include mq(sm) {
+          .comment__item__reply {
+            padding-left: emCal(16, 30);
+          }
+        }
+      }
+    }
+    &__form {
+      input {
+        margin-bottom: emCal(16, 20);
+        @include input(
+          $pd: emCal(16, 15) emCal(16, 20),
+          $fsz: emCal(16, 14),
+          $brd: emCal(16, 5)
+        );
+      }
+      textarea {
+        margin-bottom: emCal(16, 30);
+        @include textarea(
+          $pd: emCal(16, 15) emCal(16, 20),
+          $fsz: emCal(16, 14),
+          $brd: emCal(16, 5)
+        );
+      }
+    }
+  }
+  .comment-title {
+    @include typo($fsz: emCal(16, 22), $up: true);
+    text-align: center;
+    position: relative;
+    margin-bottom: emCal(16, 40);
+    span {
+      background-color: #fff;
+      padding: 0 emCal(16, 15);
+    }
+    &:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: emCal(22, 10);
+      height: 1px;
+      background-color: setColor(border);
+      z-index: -1;
+    }
+  }
+}

@@ -1,0 +1,506 @@
+/***************************
+	Shop
+***************************/
+.shop {
+  font-size: 16px;
+  &__filter-sibebar {
+    padding-right: emCal(16, 30);
+    @include mq(md) {
+      padding-right: 0;
+    }
+    &__section {
+      margin-bottom: remCal(60);
+      &.-price {
+        form {
+          display: flex;
+          align-items: center;
+          span {
+            margin: 0 emCal(16, 10);
+            flex: 1 1 10%;
+            max-width: 10%;
+            text-align: center;
+          }
+          .range-input {
+            display: flex;
+            align-items: center;
+            background-color: setColor(lightOverlay);
+            padding: emCal(16, 15) emCal(16, 20);
+            flex: 1 1 45%;
+            max-width: 45%;
+            input {
+              max-width: 100px;
+              @include input($pd: 0 10px, $width: 60px, $bg: transparent);
+              border: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__products {
+    &__header {
+      @include flexAlign($vertical: center, $horizontal: space-between);
+      margin-bottom: emCal(16, 40);
+
+      h5 {
+        @include typo($fsz: 15, $fw: 400);
+        span {
+          font-weight: 600;
+          margin-right: emCal(15, 10);
+        }
+      }
+      @include mq(md) {
+        flex-direction: column;
+      }
+      @include mq(sm) {
+        h5 {
+          margin-bottom: emCal(16, 15);
+        }
+      }
+      .product-filter {
+        display: flex;
+
+        .select-group {
+          span {
+            @include typo($fsz: emCal(16, 15));
+          }
+          select {
+            border: 0;
+            cursor: pointer;
+            @include typo($fsz: emCal(16, 15), $fw: 700);
+          }
+          &:first-child {
+            margin-right: emCal(16, 30);
+          }
+        }
+        @include mq(md) {
+          flex-direction: column;
+          align-items: center;
+          .select-group {
+            &:first-child {
+              margin-right: 0;
+              margin-bottom: emCal(16, 15);
+            }
+          }
+        }
+      }
+    }
+    &__content {
+      .product {
+        margin-bottom: emCal(16, 40);
+      }
+    }
+  }
+}
+
+/***************************
+	Shop detail
+***************************/
+.shop-detail {
+  font-size: 16px;
+  .type-block {
+    display: flex;
+    margin-bottom: emCal(16, 20);
+    &:last-child {
+      margin-bottom: 0;
+    }
+    p {
+      @include typo($fsz: emCal(16, 15), $lh: emCal(15, 26));
+    }
+    .type-name {
+      flex: 1 1 30%;
+      max-width: 30%;
+      font-weight: 400;
+    }
+    .type-detail {
+      flex: 1 1 70%;
+      max-width: 70%;
+    }
+  }
+  &__image {
+    max-width: calc(100% - 30px);
+    @include mq(md) {
+      max-width: 100%;
+      margin-bottom: emCal(16, 30);
+    }
+    .slider {
+      div {
+        img {
+          @include imgCenter;
+        }
+      }
+      &-single {
+        margin-bottom: emCal(16, 20);
+      }
+      &-nav {
+        margin: 0 emCal(16, -10);
+        &__item {
+          padding: 0 emCal(16, 10);
+          img {
+            border: 2px solid transparent;
+          }
+          &.is-active {
+            img {
+              border: 2px solid setColor(yellow);
+              border-radius: emCal(16, 5);
+            }
+          }
+        }
+        .slick-arrow {
+          background-color: #fff;
+          border: 0;
+          color: setColor(regular);
+          font-size: emCal(16, 14);
+          top: 50%;
+          transform: translateY(-50%);
+          padding: emCal(14, 15);
+          position: absolute;
+          z-index: 1;
+          &.slick-next {
+            right: emCal(16, 10);
+          }
+          &.slick-prev {
+            left: emCal(16, 10);
+          }
+        }
+      }
+    }
+  }
+  &__content {
+    @include mq(md) {
+      padding-left: 0;
+    }
+    &__top {
+      border-bottom: 1px solid setColor(border);
+      margin-bottom: emCal(16, 40);
+      h1 {
+        @include typo($fsz: emCal(16, 30), $lh: emCal(30, 48), $fw: 700);
+      }
+      .brand {
+        @include typo($fsz: emCal(16, 14), $lh: emCal(14, 26));
+      }
+      .rate {
+        margin-bottom: emCal(16, 30);
+        .star {
+          display: inline-block;
+          margin-right: emCal(16, 10);
+          i {
+            font-size: emCal(16, 12);
+            color: #e3c01c;
+          }
+        }
+        span {
+          @include typo($fsz: emCal(16, 12), $color: setColor(subTitle));
+        }
+      }
+      .price {
+        display: flex;
+        align-items: center;
+        margin-bottom: emCal(16, 40);
+        h3 {
+          @include typo($fsz: emCal(16, 30), $fw: 700);
+          margin-right: emCal(30, 15);
+        }
+        .discount {
+          @include typo($fsz: emCal(16, 18), $fw: 400, $color: #b1b0b0);
+          text-decoration: line-through;
+        }
+      }
+      .description {
+        @include typo($fsz: emCal(16, 14), $fw: 400, $lh: emCal(14, 24));
+        margin-bottom: emCal(14, 30);
+      }
+      .product-controller {
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: emCal(16, 40);
+        .quantity {
+          display: flex;
+          align-items: center;
+          span {
+            @include typo($fsz: emCal(16, 15));
+            margin-right: emCal(15, 10);
+          }
+          .quantity-controller {
+            padding: 0 emCal(16, 20);
+            border: 1px solid setColor(yellow);
+            display: flex;
+            align-items: center;
+            margin-right: emCal(16, 10);
+            height: emCal(16, 50);
+            input {
+              border: 0;
+              text-align: center;
+              max-width: emCal(16, 60);
+              @include typo($fsz: emCal(16, 15), $fw: 600);
+            }
+          }
+          @include mq(md) {
+            margin-bottom: emCal(14, 15);
+          }
+        }
+        .btn {
+          padding: 0 emCal(14, 20);
+          height: emCal(14, 50);
+          line-height: emCal(14, 50);
+          margin-right: emCal(14, 10);
+          &:last-child {
+            margin-right: 0;
+          }
+          @include mq(md) {
+            margin-bottom: emCal(14, 15);
+          }
+        }
+      }
+    }
+    &__bottom {
+    }
+  }
+  &__tab {
+    margin-top: remCal(60);
+    margin-bottom: remCal(60);
+    .tab {
+      &-content {
+        &__item[data-stand="description"] {
+          p {
+            @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27), $fw: 400);
+            margin-bottom: emCal(16, 30);
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+        &__item[data-stand="reviews"] {
+          .review-block {
+            @include mq(md) {
+              margin-bottom: emCal(16, 30);
+            }
+            &__avatar {
+              height: emCal(16, 150);
+              width: emCal(16, 150);
+              float: left;
+              margin-right: emCal(16, 30);
+              img {
+                @include imgCenter;
+              }
+            }
+            &__content {
+              h5 {
+                @include typo($fsz: emCal(16, 22), $fw: 700);
+                margin-bottom: emCal(22, 20);
+              }
+              p {
+                @include typo($fsz: emCal(16, 14), $lh: emCal(14, 24));
+                margin-bottom: emCal(16, 15);
+              }
+
+              .star {
+                display: inline-block;
+                margin-right: emCal(16, 10);
+                i {
+                  font-size: emCal(16, 12);
+                  color: #e3c01c;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &__slide {
+    // margin-bottom: remCal(30);
+    h3 {
+      @include typo($fsz: emCal(16, 22), $fw: 700, $up: true);
+      text-align: center;
+      margin-bottom: emCal(22, 40);
+    }
+    .related-post-slide {
+      margin: 0 emCal(16, -15);
+      &__item {
+        padding: 0 emCal(16, 15);
+      }
+      .slick-arrow {
+        background-color: #fff;
+        border: 0;
+        color: setColor(regular);
+        font-size: emCal(16, 14);
+        top: 50%;
+        transform: translateY(-50%);
+        padding: emCal(14, 15);
+        position: absolute;
+        z-index: 1;
+        &.slick-next {
+          right: emCal(16, 10);
+        }
+        &.slick-prev {
+          left: emCal(16, 10);
+        }
+      }
+    }
+  }
+}
+
+/***************************
+	Shop cart
+***************************/
+.cart {
+  font-size: 16px;
+  &__table {
+    margin-bottom: emCal(16, 30);
+    overflow-y: auto;
+    white-space: nowrap;
+    table {
+      width: 100%;
+      thead {
+        tr {
+          border-bottom: 1px solid setColor(border);
+        }
+        th {
+          @include typo($fsz: emCal(16, 18), $fw: 700);
+          padding: emCal(18, 15) emCal(18, 15);
+          &:first-child {
+            text-align: left;
+            padding-left: 0;
+          }
+        }
+      }
+      tbody {
+        tr {
+          border-bottom: 1px solid setColor(border);
+        }
+        td {
+          text-align: center;
+          vertical-align: middle;
+          padding: emCal(16, 30) emCal(16, 15);
+          &:first-child {
+            text-align: left;
+            padding-left: 0;
+            .cart-product {
+              display: flex;
+              align-items: center;
+              img {
+                margin-right: emCal(16, 15);
+                height: emCal(16, 90);
+                width: emCal(16, 90);
+              }
+              &__content {
+                h5 {
+                  @include typo($fsz: emCal(16, 15));
+                  margin-bottom: emCal(15, 5);
+                }
+                .star {
+                  display: inline-block;
+                  margin-right: emCal(16, 10);
+                  i {
+                    font-size: emCal(16, 10);
+                    color: #e3c01c;
+                  }
+                }
+              }
+            }
+          }
+          &:nth-child(2),
+          &:nth-child(4) {
+            @include typo($fsz: 1em, $fw: 700);
+          }
+          &:nth-child(3) {
+            .quantity-controller {
+              padding: 0;
+              border: 0;
+              margin-right: 0;
+              justify-content: center;
+            }
+          }
+          &:last-child {
+            text-align: right;
+            padding-right: 0;
+            a {
+              @include button(
+                $color: setColor(regular),
+                $bg: setColor(lightOverlay),
+                $pd: 0,
+                $lh: emCal(15, 45),
+                $br: 999px
+              );
+              height: emCal(15, 45);
+              width: emCal(15, 45);
+              display: inline-block;
+            }
+          }
+        }
+      }
+    }
+  }
+  &__footer {
+    margin-bottom: emCal(16, 50);
+    &__actions {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      @include mq(sm) {
+        .btn {
+          margin-bottom: emCal(16, 30);
+        }
+      }
+    }
+    @include mq(sm) {
+      margin-bottom: 0;
+    }
+  }
+  &__total {
+    margin-bottom: remCal(80);
+    &__discount {
+      form {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        h3 {
+          @include typo($fsz: emCal(16, 18), $up: true);
+          margin-right: emCal(18, 30);
+          @include mq(md) {
+            width: 100%;
+            margin-bottom: emCal(18, 15);
+          }
+        }
+        input {
+          margin-right: emCal(16, 10);
+          @include input(
+            $pd: 0 emCal(16, 20),
+            $height: emCal(16, 50),
+            $width: auto,
+            $brd: emCal(16, 5)
+          );
+        }
+        .btn {
+          padding: 0 emCal(16, 30);
+          line-height: emCal(16, 50);
+          height: emCal(16, 50);
+        }
+      }
+      @include mq(md) {
+        margin-bottom: emCal(16, 30);
+      }
+    }
+    &__content {
+      padding: emCal(16, 35) emCal(16, 40);
+      background-color: setColor(lightOverlay);
+      h3 {
+        @include typo($fsz: emCal(16, 17), $up: true);
+        margin-bottom: emCal(17, 20);
+      }
+      .total__row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: emCal(16, 15);
+        h5 {
+          @include typo($fsz: emCal(16, 16), $fw: 600);
+        }
+      }
+      .btn {
+        display: block;
+        margin-top: emCal(16, 40);
+      }
+    }
+  }
+}

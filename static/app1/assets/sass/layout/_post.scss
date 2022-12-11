@@ -1,0 +1,233 @@
+/***************************
+	Post detail
+***************************/
+.post {
+  font-size: 16px;
+
+  .post-standard {
+    margin-bottom: remCal(80);
+
+    #post-share {
+      position: absolute;
+      top: 0;
+      left: -80px;
+      top: 5px;
+      display: flex;
+      flex-direction: column;
+      h5 {
+        @include typo($fsz: emCal(16, 15), $fw: 600, $up: true);
+        margin-bottom: emCal(15, 30);
+      }
+      .social-media {
+        a {
+          @include button(
+            $color: #fff,
+            $fsz: emCal(16, 14),
+            $lh: emCal(14, 40),
+            $bg: setColor(lightOverlay),
+            $pd: 0,
+            $br: 999px
+          );
+          display: block;
+          height: emCal(14, 40);
+          width: emCal(14, 40);
+          margin: 0 auto;
+          margin-bottom: emCal(14, 15);
+        }
+      }
+      @include mq(xxl) {
+        position: unset;
+        flex-direction: row;
+        align-items: center;
+        margin-bottom: emCal(16, 50);
+        h5 {
+          margin-bottom: 0;
+          margin-right: emCal(15, 30);
+        }
+        .social-media {
+          a {
+            display: inline-block;
+            margin-bottom: 0;
+            margin: 0 emCal(14, 5);
+            @include spaceTrim();
+          }
+        }
+      }
+    }
+    &__banner {
+      position: relative;
+      @include mq(md) {
+        height: emCal(16, 480);
+      }
+      @include flexAlign;
+      height: emCal(16, 780);
+      margin-bottom: emCal(16, 60);
+      &:hover {
+        .post-standard__banner__image {
+          img {
+            transform: scale(1.15);
+            transition: 5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+          }
+        }
+      }
+      &__image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        overflow: hidden;
+        img {
+          @include imgCenter;
+          transition: 3s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+        }
+      }
+      &__content {
+        background-color: #fff;
+        padding: emCal(16, 40);
+        margin: 0 emCal(16, 30);
+      }
+    }
+    &__content {
+      position: relative;
+      .paragraph {
+        @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27));
+        margin-bottom: emCal(15, 30);
+      }
+      .post-card-quote {
+        margin-bottom: emCal(16, 30);
+      }
+      .image {
+        float: left;
+        margin-right: emCal(16, 30);
+        max-width: 100%;
+        &.left {
+          float: left;
+          margin-right: emCal(16, 30);
+        }
+        &.right {
+          float: right;
+          margin-left: emCal(16, 30);
+        }
+        @include mq(md) {
+          max-width: 50%;
+        }
+        @include mq(sm) {
+          width: 100%;
+          max-width: 100%;
+          margin-bottom: emCal(16, 30);
+          &.left {
+            margin-right: 0;
+          }
+          &.right {
+            margin-left: 0;
+          }
+        }
+      }
+    }
+    &.-full {
+      .post-standard__banner {
+        &__content {
+          .post-card {
+            .card__content {
+              max-width: 600px;
+              .card__content-title {
+                font-size: emCal(16, 30);
+                @include mq(md) {
+                  font-size: emCal(16, 22);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    &.-slide {
+      .post-title {
+        margin-bottom: emCal(16, 50);
+        .card__content {
+          .card__content-title {
+            font-size: emCal(16, 30);
+          }
+        }
+      }
+    }
+    &.-video {
+      .post-title {
+        margin-bottom: emCal(16, 50);
+      }
+      .post-video {
+        margin-bottom: emCal(16, 30);
+      }
+    }
+    &.-audio {
+      @extend .-video;
+      .post-audio {
+        margin-bottom: emCal(16, 30);
+        .plyr__controls {
+          background-color: setColor(lightOverlay);
+        }
+      }
+    }
+    &.-quote {
+      @extend .-video;
+      .post-quote {
+        text-align: center;
+        background-color: setColor(yellow);
+        padding: emCal(16, 40) emCal(16, 90);
+        border-radius: emCal(16, 5);
+        margin-bottom: emCal(16, 30);
+        @include mq(md) {
+          padding: emCal(16, 20) emCal(16, 40);
+        }
+        .post-quote-info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: emCal(16, 20);
+          .info__time {
+            margin-right: emCal(16, 15);
+          }
+          i,
+          p {
+            display: inline-block;
+            @include typo($fsz: emCal(16, 13), $lh: 1, $fw: 400, $color: #fff);
+          }
+          i {
+            margin-right: emCal(16, 10);
+          }
+        }
+        h3 {
+          @include typo(
+            $fsz: emCal(16, 26),
+            $lh: emCal(26, 38),
+            $fw: 700,
+            $color: #fff
+          );
+          margin-bottom: emCal(16, 10);
+          position: relative;
+          &:before {
+            content: "\f10d";
+            font-family: "Font Awesome 5 Pro";
+            position: absolute;
+            top: 0;
+            left: -30px;
+            font-size: 1em;
+          }
+          &:after {
+            content: "\f10e";
+            font-family: "Font Awesome 5 Pro";
+            position: absolute;
+            bottom: 0;
+            right: -30px;
+            font-size: 1em;
+          }
+        }
+        p {
+          @include typo($fsz: emCal(16, 13), $fw: 400, $color: #fff);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+/***************************
+	Tag
+***************************/
+.tag-btn {
+  @include button($fw: 400, $pd: 15px, $color: setColor(subTitle));
+  display: inline-block;
+  margin-right: 15px;
+  margin-bottom: 15px;
+}

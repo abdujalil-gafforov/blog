@@ -1,0 +1,52 @@
+#search-box {
+  font-size: 30px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+  padding: emCal(30, 20) 0;
+  // animation: slideInDown 1s forwards;
+  z-index: 99;
+  form {
+    position: relative;
+    input {
+      @include input(
+        $pd: emCal(28, 20) emCal(28, 30) emCal(28, 20) emCal(28, 80),
+        $fsz: emCal(30, 28),
+        $fw: 500,
+        $height: emCal(28, 70),
+        $brd: 0px
+      );
+      background: {
+        image: url("../images/icons/search.svg");
+        size: emCal(28, 30);
+        position: emCal(28, 30) center;
+        repeat: no-repeat;
+      }
+    }
+    button {
+      position: absolute;
+      right: emCal(30, 30);
+      top: 50%;
+      transform: translateY(-50%);
+      @include link(#aeaeae, setColor(title), $fsz: emCal(30, 28));
+      border: 0;
+      background-color: transparent;
+    }
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-500px);
+    opacity: 0;
+    visibility: hidden;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}

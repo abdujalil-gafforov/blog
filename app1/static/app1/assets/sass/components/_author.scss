@@ -1,0 +1,46 @@
+/***************************
+	Author
+***************************/
+.author-info-block {
+  font-size: 16px;
+  background-color: setColor(yellow);
+  padding: emCal(16, 25) 0 emCal(16, 40);
+  border-radius: emCal(16, 5);
+  margin-bottom: remCal(70);
+  &__avatar {
+    height: 120px;
+    width: 120px;
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: emCal(16, 25);
+    img {
+      @include imgCenter();
+    }
+  }
+  &__info {
+    text-align: center;
+    max-width: 70%;
+    margin: 0 auto;
+
+    h5 {
+      @include typo($fsz: emCal(16, 22), $fw: 600);
+      margin-bottom: emCal(22, 25);
+    }
+    p {
+      @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27), $fw: 400);
+      margin-bottom: 1em;
+    }
+    .social-media {
+      a {
+        @include link(setColor(title), #fff, $fsz: 1em);
+        margin: 0 emCal(16, 10);
+        @include spaceTrim();
+      }
+    }
+    @include mq(md) {
+      max-width: 100%;
+      padding: 0 emCal(16, 15);
+    }
+  }
+}

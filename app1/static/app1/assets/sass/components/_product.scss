@@ -1,0 +1,72 @@
+/***************************
+	Product
+***************************/
+.product {
+  &__image {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: emCal(16, 25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      &::after {
+        opacity: 1;
+      }
+      .btn {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    &::after {
+      content: "";
+      background-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+      opacity: 0;
+      @include prefix(transition, $transition);
+    }
+    img {
+      @include imgCenter;
+    }
+    .btn {
+      z-index: 2;
+      display: inline-block;
+      position: absolute;
+      top: -200px;
+    }
+  }
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__left {
+      color: red;
+      a {
+        @include link(
+          setColor(title),
+          setColor(yellow),
+          $fsz: emCal(16, 15),
+          $cpt: true
+        );
+        display: block;
+        margin-bottom: emCal(16, 5);
+      }
+      .star {
+        i {
+          font-size: emCal(16, 10);
+          color: #e3c01c;
+        }
+      }
+    }
+    &__right {
+      h3 {
+        @include typo($fsz: emCal(16, 22), $fw: 700);
+      }
+    }
+  }
+}

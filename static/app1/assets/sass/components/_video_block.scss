@@ -1,0 +1,89 @@
+/***************************
+	Video block
+***************************/
+.video-block {
+  font-size: 16px;
+  margin-bottom: remCal(70);
+  .video-view {
+    position: relative;
+    #video-list__title {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      z-index: 5;
+      @include typo(
+        $fsz: emCal(16, 22),
+        $lh: emCal(22, 26),
+        $color: #fff,
+        $cpt: true
+      );
+    }
+    #video-list-player {
+      height: 475px;
+    }
+  }
+  .video-list {
+    height: 475px;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    &::-webkit-scrollbar-thumb {
+      background: setColor(blue);
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #000;
+    }
+    &__header {
+      background-color: setColor(blue);
+      padding: emCal(16, 30);
+      h5 {
+        @include typo($fsz: emCal(16, 20), $color: #fff, $up: true);
+        margin-bottom: emCal(16, 10);
+      }
+      p {
+        @include typo(
+          $fsz: emCal(16, 16),
+          $color: rgba(255, 255, 255, 0.7),
+          $fw: 400
+        );
+      }
+    }
+    &__content {
+      background-color: #111;
+      padding: emCal(16, 10) 0;
+      &__item {
+        display: flex;
+        padding: emCal(16, 10) emCal(16, 30);
+        @include link(#fff, #dedede, $fsz: 1em, $lh: emCal(16, 21), $cpt: true);
+        &.active {
+          background-color: setColor(blue);
+        }
+        &:hover {
+          background-color: setColor(blue);
+        }
+        .item__image {
+          img {
+            @include imgCenter(70px, 105px);
+          }
+        }
+        .item__detail {
+          padding-left: emCal(16, 20);
+          h5 {
+            @include overflowText(2);
+            margin-bottom: emCal(16, 10);
+          }
+          p {
+            @include typo(
+              $fsz: emCal(16, 13),
+              $color: rgba(255, 255, 255, 0.5)
+            );
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+/***************************
+	404 error
+***************************/
+.error-404 {
+  font-size: 16px;
+  margin-bottom: remCal(80);
+  &__content {
+    @include mq(md) {
+      margin-bottom: emCal(16, 50);
+    }
+    h2 {
+      @include typo($fsz: emCal(16, 36), $fw: 700);
+      margin-bottom: emCal(36, 10);
+    }
+    p {
+      @include typo($fsz: emCal(16, 17), $lh: emCal(17, 27));
+      margin-bottom: emCal(16, 35);
+    }
+    form {
+      position: relative;
+      margin-bottom: emCal(16, 30);
+      input {
+        @include input($pd: emCal(14, 15) emCal(14, 20), $brd: emCal(14, 5));
+      }
+
+      button {
+        background-color: transparent;
+        border: 0;
+        @include link(setColor(title), setColor(yellow), $fsz: 1em);
+        position: absolute;
+        top: 50%;
+        right: emCal(16, 25);
+        transform: translateY(-50%);
+      }
+    }
+  }
+  &__image {
+    padding-left: emCal(16, 30);
+    img {
+      @include imgCenter;
+    }
+    @include mq(md) {
+      padding-left: 0;
+    }
+  }
+}

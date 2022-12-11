@@ -1,0 +1,56 @@
+/***************************
+	Instagram
+***************************/
+.instagrams {
+  font-size: 15px;
+  .instagrams-container {
+    .instagrams-item {
+      position: relative;
+      &:hover {
+        .instagrams-item__content {
+          opacity: 1;
+        }
+      }
+      img {
+        width: 100%;
+      }
+      .instagrams-item__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #FF273Cad;
+        opacity: 0;
+        @include prefix(transition, $transition);
+        @include typo($fsz: emCal(15, 15), $fw: 400, $lh: 1, $color: #fff);
+        i {
+          font-size: emCal(15, 30);
+          margin-bottom: emCal(30, 15);
+        }
+      }
+    }
+  }
+  &.-theme--violet {
+    .instagrams-container {
+      .instagrams-item {
+        .instagrams-item__content {
+          background-color: #537bdfbd;
+        }
+      }
+    }
+  }
+  &.-theme--blue {
+    .instagrams-container {
+      .instagrams-item {
+        .instagrams-item__content {
+          background-color: #11d1efbd;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,211 @@
+/***************************
+	News block
+***************************/
+.news-block {
+  margin-bottom: remCal(50);
+  &.-theme--blue {
+    .news-block__header {
+      .header__controller {
+        .header__controller__tab {
+          .tab-item {
+            &.active {
+              color: setColor(blue);
+            }
+          }
+        }
+      }
+    }
+  }
+  &.-theme--violet {
+    .news-block__header {
+      .header__controller {
+        .header__controller__tab {
+          .tab-item {
+            &.active {
+              color: setColor(violet);
+            }
+          }
+        }
+      }
+    }
+  }
+  .news-block__header {
+    font-size: 18px;
+    display: flex;
+    margin-bottom: emCal(18, 48);
+    align-items: center;
+    @include mq(sm) {
+      flex-direction: column;
+      .header__controller__title {
+        margin-bottom: emCal(18, 15);
+      }
+    }
+    .header__controller__title {
+      flex: 1;
+    }
+    .header__controller {
+      display: flex;
+      .header__controller__tab {
+        @include mq(sm) {
+          text-align: center;
+        }
+        .tab-item {
+          @include link(
+            setColor(regular),
+            setColor(title),
+            $fsz: emCal(18, 15),
+            $cpt: true
+          );
+          display: inline-block;
+          margin: 0 emCal(18, 10);
+          @include mq(sm) {
+            line-height: emCal(18, 40);
+          }
+          &.active {
+            color: setColor(yellow);
+          }
+        }
+      }
+    }
+  }
+  .news-block__tab {
+    font-size: 16;
+    &:hover {
+      .slick-arrow {
+        opacity: 1;
+      }
+    }
+    .slick-arrow {
+      background-color: #bebebe;
+      border: 0;
+      color: setColor(regular);
+      font-size: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 15px;
+      position: absolute;
+      z-index: 1;
+      opacity: 0;
+      @include prefix(transition, $transition);
+
+      &.slick-next {
+        right: emCal(16, 0);
+      }
+      &.slick-prev {
+        left: emCal(16, 0);
+      }
+      @include mq(xl) {
+        opacity: 1;
+        &.slick-next {
+          right: 0;
+        }
+        &.slick-prev {
+          left: 0;
+        }
+      }
+    }
+    .news-block__tab__item {
+      display: none;
+      @include mq(md) {
+        font-size: 15px;
+      }
+      &.active {
+        display: block;
+      }
+      .news-block__content {
+        color: red;
+        .news-block__content__slide {
+          .post-card {
+            &.-large {
+              @include mq(lg) {
+                display: none;
+              }
+              @include mq(sm) {
+                display: none;
+              }
+            }
+          }
+        }
+        &.-default {
+          .news-block__content__slide {
+            .post-card {
+              margin-bottom: emCal(16, 30);
+              &.-large {
+                .card__cover {
+                  // height: emCal(16, 380);
+                  align-items: center;
+                }
+              }
+              &.-small {
+                .card__cover {
+                  // height: emCal(16, 180);
+                  align-items: center;
+                }
+                .card__content {
+                  .card__content-title {
+                    font-size: emCal(16, 18);
+                    line-height: emCal(18, 22);
+                  }
+                }
+              }
+            }
+          }
+        }
+        &.-hoz {
+          .news-block__content__slide {
+            .post-card {
+              &.-large {
+                margin-bottom: emCal(16, 30);
+              }
+              &.-small {
+                .card__cover {
+                  // height: emCal(16, 247);
+                  align-items: center;
+                }
+                @include mq(md) {
+                  margin-bottom: emCal(16, 30);
+                }
+              }
+            }
+          }
+        }
+        &.-hoz-small {
+          .news-block__content__slide {
+            .post-card {
+              &.-small {
+                margin-bottom: emCal(16, 30);
+                .card__cover {
+                  // height: emCal(16, 180);
+                  align-items: center;
+                }
+                .card__content {
+                  &-title {
+                    font-size: emCal(16, 18);
+                    margin-bottom: emCal(16, 10);
+                  }
+                  &-description {
+                    margin-top: emCal(16, 10);
+                    margin-bottom: 0;
+                  }
+                  @include mq(sm) {
+                    &-info {
+                      flex-direction: column;
+                      align-items: flex-start;
+                      .info__time {
+                        margin-right: 0;
+                        margin-bottom: emCal(16, 5);
+                      }
+                    }
+                  }
+                }
+                @include mq(md) {
+                  margin-bottom: emCal(16, 30);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

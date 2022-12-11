@@ -1,0 +1,69 @@
+/***************************
+	Subcribe box
+***************************/
+.subcribe-box {
+  font-size: 16;
+  padding: emCal(16, 40);
+  background-color: setColor(lightOverlay);
+  border-radius: emCal(16, 5);
+  h5 {
+    @include typo($fsz: emCal(16, 18), $fw: 700, $up: true);
+    margin-bottom: emCal(18, 30);
+  }
+  p {
+    @include typo($fsz: emCal(16, 15), $lh: emCal(15, 26), $fw: 400);
+    margin-bottom: emCal(15, 15);
+  }
+  input {
+    @include input($pd: emCal(16, 15) emCal(16, 20));
+    margin-bottom: emCal(16, 20);
+  }
+  .btn.-normal {
+    display: block;
+    padding: emCal(16, 15);
+  }
+  &.-theme--yellow {
+    background-color: setColor(yellow);
+    h5 {
+      color: #fff;
+    }
+    p {
+      color: #fff;
+    }
+    input {
+      @include input(
+        $pd: emCal(16, 15) emCal(16, 20),
+        $color: #fff,
+        $brd: emCal(16, 5),
+        $ph-color: #fff7,
+        $bg: transparent
+      );
+    }
+    .btn.-normal {
+      background-color: #fff;
+      color: setColor(yellow);
+    }
+  }
+  &.-theme--violet {
+    background-color: setColor(violet);
+    h5 {
+      color: #fff;
+    }
+    p {
+      color: #fff;
+    }
+    input {
+      @include input(
+        $pd: emCal(16, 15) emCal(16, 20),
+        $color: #fff,
+        $brd: emCal(16, 5),
+        $ph-color: #fff7,
+        $bg: transparent
+      );
+    }
+    .btn.-normal {
+      background-color: #fff;
+      color: setColor(violet);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+//Calculation px to rem
+@function remCal($size) {
+  @if ($size == "auto" or $size == "100%") {
+    @return $size;
+  }
+  @return ($size/$rem-baseline) * 1rem;
+}
+
+//Calculation px to rem
+@function emCal($em, $size) {
+  @return ($size/$em) * 1em;
+}
+
+//Golder ratio line height {
+@function goldLineHeight($font-size) {
+  @return ($font-size/$rem-baseline * 1.42857) * 1rem;
+}
+
+//Check if color has exits
+@function setColor($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  } @else {
+    @return $color;
+  }
+}
+
+//Get color schema
+@function setSchmaColor($scheme, $tone: base) {
+  @return map-get(map-get($colorscheme, $scheme), $tone);
+}

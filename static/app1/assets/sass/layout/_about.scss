@@ -1,0 +1,33 @@
+/***************************
+	About us
+***************************/
+.about-us {
+  font-size: 16;
+  margin-bottom: remCal(70);
+  &__image {
+    width: 100%;
+    padding-right: emCal(16, 30);
+    @include mq(md) {
+      margin-bottom: emCal(16, 30);
+      padding-right: 0;
+    }
+    img {
+      @include imgCenter;
+    }
+  }
+  &__content {
+    h3 {
+      @include typo($fsz: emCal(16, 30), $fw: 700);
+      margin-bottom: emCal(30, 35);
+    }
+    p {
+      @include typo($fsz: emCal(16, 15), $lh: emCal(15, 27), $fw: 400);
+      margin-bottom: emCal(15, 30);
+    }
+    .follow {
+      p {
+        @include typo($fsz: emCal(16, 15), $fw: 600);
+      }
+    }
+  }
+}

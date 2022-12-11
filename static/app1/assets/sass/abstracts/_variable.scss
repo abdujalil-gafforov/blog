@@ -1,0 +1,53 @@
+//Default transition
+$transition: 0.2s ease-in-out;
+
+//Default colors
+$colors: (
+  title: #111,
+  subTitle: #444,
+  regular: #888,
+  border: #e1e1e1,
+  lightOverlay: #f5f5f5,
+  yellow: #FF273C,
+  blue: #11d2ef,
+  violet: #537bdf,
+  trans: transparent,
+);
+
+//Color schema
+$colorscheme: (
+  gray: (
+    base: #ccc,
+    light: #aeaeae,
+    dark: #666,
+  ),
+  brown: (
+    base: #ab906b,
+    light: #ecdac3,
+    dark: #5e421c,
+  ),
+);
+
+//Cross-browser
+$prefixes: (webkit, moz, ms, o);
+
+//Rembaseline
+$rem-baseline: 16;
+
+//Font
+$font: (
+  color: #000,
+  family: sans-serif,
+  size: 16px,
+  line-height: 1,
+);
+
+//Breakpoint
+$breakpoint: (
+  sm: " 576px",
+  md: "768px",
+  lg: "992px",
+  xl: "1200px",
+  xxl: "1400px",
+  xxxl: "1770px",
+);

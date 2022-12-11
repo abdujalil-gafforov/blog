@@ -1,0 +1,16 @@
+@mixin imgCenter($height: 100%, $width: 100%) {
+  height: $height;
+  width: $width;
+  object-fit: cover;
+}
+
+@mixin flexAlign($vertical: center, $horizontal: center, $direction: row) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $vertical;
+  justify-content: $horizontal;
+}
+
+.center {
+  text-align: center;
+}

@@ -1,0 +1,38 @@
+/***************************
+	Tab
+***************************/
+.tab {
+  .tab-header {
+    margin-bottom: emCal(16, 45);
+    ul {
+      @include mq(md) {
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      & > li {
+        display: inline-block;
+        margin: 0 emCal(16, 25);
+        @include spaceTrim;
+        & > a {
+          @include link(
+            setColor(regular),
+            setColor(title),
+            $fsz: emCal(16, 18),
+            $fw: 600
+          );
+          &.active {
+            color: setColor(title);
+          }
+        }
+      }
+    }
+  }
+  .tab-content {
+    &__item {
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+}

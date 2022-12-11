@@ -1,0 +1,21 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            <img src="{% static 'Google__G__Logo.svg.png' %}" alt="logo" height="40px">
+        </a>
+    </h1>
+{% endblock %}
+{#{% block extrastyle %}{{ block.super }}#}
+{#<style>#}
+{#:root {#}
+{#  --primary: #9774d5;#}
+{#  --secondary: #785cab;#}
+{#  --link-fg: #7c449b;#}
+{#  --link-selected-fg: #8f5bb2;#}
+{# }#}
+{#</style>#}
+{#{% endblock %}#}
+{% block nav-global %}{% endblock %}

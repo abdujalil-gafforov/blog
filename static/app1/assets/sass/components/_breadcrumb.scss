@@ -1,0 +1,30 @@
+.breadcrumb {
+  padding: remCal(50) 0 remCal(70);
+  ul {
+    & > li {
+      display: inline-block;
+      & > a {
+        @include link(setColor(title), setColor(title), $fsz: emCal(16, 15));
+        i {
+          margin-right: emCal(16, 10);
+        }
+        &:after {
+          content: ">";
+          padding: 0 emCal(15, 10);
+        }
+      }
+      &.active {
+        & > a {
+          @include link(
+            setColor(regular),
+            setColor(title),
+            $fsz: emCal(16, 15)
+          );
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,65 @@
+/***************************
+	Checkbox customed
+***************************/
+
+.checkbox-group {
+  &.-round {
+    &.customed {
+      .checkmark {
+        border-radius: 999px;
+      }
+    }
+  }
+  &.customed {
+    display: block;
+    position: relative;
+    padding-left: emCal(16, 30);
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    &:hover {
+      input ~ .checkmark {
+        background-color: #e6e6e6;
+      }
+    }
+    @include typo($fsz: emCal(16, 15), $cpt: true);
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 15px;
+      width: 15px;
+      background-color: #d8d8d8;
+      border-radius: emCal(15, 3);
+      &:after {
+        content: "\f00d";
+        font-family: "Font Awesome 5 Pro";
+        left: 4px;
+        top: 2px;
+        position: absolute;
+        font-size: 12px;
+        color: #fff;
+      }
+    }
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      &:checked ~ .checkmark {
+        background-color: setColor(yellow);
+        &:after {
+          content: "\f00c";
+          font-size: 10px;
+          left: 2.5px;
+          top: 3px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{% extends 'app1/parts/base.html' %}
+{% load static %}
+{% block main_content %}
+    <div id="content">
+    <div class="post">
+      <div class="container">
+        <div class="post-standard">
+          <div class="post-standard__banner">
+            <div class="post-standard__banner__image">
+              <img src="{{ post.image.url }}" alt="P{{ post.image.name }}"/>
+            </div>
+            <div class="post-standard__banner__content">
+                  <div class="post-card -center">
+                    <div></div>
+                    <div class="card__content">
+                      <h5 class="card__content-category">{{ post.category }}</h5>
+                      <a class="card__content-title">{{ post.title }}</a>
+                      <div class="card__content-info">
+                        <div class="info__time"><i class="far fa-clock"></i>
+                          <p>{{  post.created_at }}</p>
+                        </div>
+                        <div class="info__comment"><i class="far fa-comment"></i>
+                          <p>{{ post.comment_set.count }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+              <div class="post-standard__content">
+                <!-- Post share icons -->
+                <div id="post-share">
+                  <h5>Share:</h5>
+                  <div class="social-media">
+                      <a href="#" style="background-color: #075ec8">
+                        <i class="fab fa-facebook-f"></i>
+                      </a>
+                      <a href="#" style="background-color: #40c4ff">
+                        <i class="fab fa-twitter"></i>
+                      </a>
+                       <a href="#" style="background-image: linear-gradient(to top, #f2a937, #d92e73, #9937b7, #4a66d3), linear-gradient(to top, #af00e1, #ff9e35)">
+                         <i class="fab fa-instagram"></i>
+                       </a>
+                       <a href="#" style="background-color: #ff0000">
+                         <i class="fab fa-youtube"></i>
+                       </a>
+                   </div>
+                </div>
+                <!-- content Starts here -->
+                <p class="paragraph">
+                    {{ post.body }}
+                </p>
+                <!-- Post footer -->
+                <div class="post-footer">
+                  <div class="post-footer__author">
+                    <div class="author__avatar">
+                      <!-- img size 150 x 150 -->
+                      <img src="{{ author.photo.url }}" alt="Author avatar">
+                    </div>
+                    <!-- Author Info -->
+                    <div class="author__info">
+                        <h5>{{ author.first_name }}</h5>
+                        <p>{% if author.bio%}{{ author.bio }}{% endif %}</p>
+                        <!-- social Media -->
+                        <div class="social-media">
+                            <a href="#">
+                              <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#">
+                              <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#">
+                              <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#">
+                              <i class="fab fa-dribbble"></i>
+                            </a>
+                        </div>
+                    </div>
+                  </div>
+                  <!-- Related Posts -->
+                  <div class="post-footer__related">
+                    <div class="post-footer__related__item -prev">
+                      <!-- <a href="post_standard.html"> <i class="fas fa-chevron-left"></i>Previous posts</a> -->
+                      <div class="post-footer__related__item__content">
+                        <!-- img size 360 x 360 -->
+                          <img src="{% static 'app1/assets/images/posts/webdesign.jpg' %}" alt="Relate news image"/>
+                        <div class="post-card ">
+                            <div></div>
+                            <div class="card__content">
+                              <h5 class="card__content-category">Open Source</h5>
+                              <a class="card__content-title" href="#">Best design resources websites every developer should bookmark</a>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="post-footer__related__item -next">
+                      <!-- <a href="#">Next posts<i class="fas fa-chevron-right"></i></a> -->
+                      <div class="post-footer__related__item__content">
+                        <div class="post-card -right">
+                          <div></div>
+                          <div class="card__content">
+                            <h5 class="card__content-category">Open Source</h5>
+                              <a class="card__content-title" href="#">Best Open Source Tools For Developers</a>
+                          </div>
+                        </div>
+                         <img src="{% static 'app1/assets/images/posts/opensource.jpg' %}" alt="Relate news image"/>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- comments  -->
+                  <div class="post-footer__comment">
+                    <h3 class="comment-title"> <span>{{ post.comment_set.count }} comment</span></h3>
+                    <div class="post-footer__comment__detail">
+                        {% for comment in comments %}
+                                                  <div class="comment__item">
+                        <div class="comment__item__avatar">
+                          <img src="{{ comment.user.photo.url }}" alt="Author avatar"/>
+                        </div>
+                        <div class="comment__item__content">
+                          <div class="comment__item__content__header">
+                            <h5>{{ comment.user.first_name }}</h5>
+                            <div class="data">
+                              <p><i class="far fa-clock"></i>{{ comment.created_at }}</p>
+{#                              <p><i class="far fa-heart"></i>12</p>#}
+{#                              <p><i class="far fa-share-square"></i>1</p>#}
+                            </div>
+                          </div>
+                          <p>{{ comment.text }}</p>
+                        </div>
+                      </div>
+                        {% endfor %}
+
+                    </div>
+                    <!-- comment Form -->
+                    <h3 class="comment-title"> <span>Add comment</span></h3>
+                    <div class="post-footer__comment__form">
+                      <form action="/" method="post">
+                          {% csrf_token %}
+                        <textarea cols="30" rows="5" placeholder="Your Message" name="message"></textarea>
+
+                      <div class="center">
+                        <input class="btn -normal" type="submit" value="Submit">
+                      </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
