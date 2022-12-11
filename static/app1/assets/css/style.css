@@ -1,6 +1,3 @@
-/***************************
-	Reset CSS
-***************************/
 * {
     box-sizing: border-box;
 }
@@ -464,7 +461,7 @@ textarea {
 	Header
 ***************************/
 header {
-    box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+    box-shadow:0 5px 5px 0 rgba(48, 68, 78, 0.1);
     font-size: 14px;
     position: fixed;
     top: 0;
@@ -530,7 +527,6 @@ header .header-wrapper nav ul > li > a {
     -ms-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
-    text-transform: uppercase;
     position: relative;
     padding: 8px 0;
     overflow: hidden;
@@ -575,7 +571,7 @@ header .header-wrapper nav ul > li .dropdown-menu {
     left: 0;
     padding: 30px 50px;
     background-color: #fff;
-    box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+    box-shadow:0 5px 5px 0 rgba(48, 68, 78, 0.1);
     opacity: 0;
     visibility: hidden;
     z-index: 10;
@@ -675,7 +671,7 @@ header.is-mobile nav {
     right: 0;
     background-color: #fff;
     z-index: 100;
-    box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+    box-shadow:0 5px 5px 0 rgba(48, 68, 78, 0.1);
     overflow-y: auto;
     height: 100vh;
 }
@@ -1601,7 +1597,7 @@ footer .copyright {
     left: 0;
     right: 0;
     background-color: #fff;
-    box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+    box-shadow:0 5px 5px 0 rgba(48, 68, 78, 0.1);
     padding: 0.66667em 0;
     z-index: 99;
 }
@@ -1622,11 +1618,11 @@ footer .copyright {
     font-size: 0.93333em;
     font-weight: 500;
     line-height: 2.5em;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    -ms-border-radius:0;
+    -o-border-radius:0;
+    border-radius:0;
     background-image: url("../images/icons/search.svg");
     background-size: 1.07143em;
     background-position: 1.07143em center;
@@ -2086,11 +2082,11 @@ footer .copyright {
     font-size: 14px;
     font-weight: 400;
     line-height: auto;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    -ms-border-radius:0;
+    -o-border-radius:0;
+    border-radius:0;
     margin-bottom: 1.25em;
 }
 
@@ -5472,11 +5468,11 @@ Blog layouts
     font-size: 14px;
     font-weight: 400;
     line-height: auto;
-    -webkit-border-radius: 0px;
-    -moz-border-radius: 0px;
-    -ms-border-radius: 0px;
-    -o-border-radius: 0px;
-    border-radius: 0px;
+    -webkit-border-radius:0;
+    -moz-border-radius:0;
+    -ms-border-radius:0;
+    -o-border-radius:0;
+    border-radius:0;
     border: 0;
 }
 

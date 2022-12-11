@@ -5,7 +5,7 @@
   left: 0;
   right: 0;
   background-color: #fff;
-  box-shadow: 0px 5px 5px 0 rgba(48, 68, 78, 0.1);
+  box-shadow:0 5px 5px 0 rgba(48, 68, 78, 0.1);
   padding: emCal(30, 20) 0;
   // animation: slideInDown 1s forwards;
   z-index: 99;
@@ -17,7 +17,7 @@
         $fsz: emCal(30, 28),
         $fw: 500,
         $height: emCal(28, 70),
-        $brd: 0px
+        $brd:0
       );
       background: {
         image: url("../images/icons/search.svg");

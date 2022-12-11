@@ -12,7 +12,7 @@ class EditProfileForm(UserChangeForm):
         return data
 
     class Meta:
-        fields = ('id','first_name', 'last_name', 'username', 'bio', 'email', 'phone_number', 'gender')
+        fields = ('id', 'first_name', 'last_name', 'username', 'bio', 'email', 'phone_number', 'gender')
         model = User
 
 

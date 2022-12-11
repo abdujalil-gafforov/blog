@@ -120,7 +120,7 @@
   $fw: 400,
   $width: 100%,
   $height: auto,
-  $brd: 0px,
+  $brd:0,
   $bg: setColor(white),
   $color: setColor(subTitle),
   $ph-color: #aeaeae
@@ -151,7 +151,7 @@
   $fw: 400,
   $width: 100%,
   $height: auto,
-  $brd: 0px,
+  $brd:0,
   $bg: setColor(white),
   $color: setColor(subTitle),
   $ph-color: #aeaeae
@@ -179,7 +179,7 @@
 @mixin select(
   $pd-hoz: 15,
   $width: 100%,
-  $brd: 0px,
+  $brd:0,
   $height: auto,
   $default: true
 ) {
