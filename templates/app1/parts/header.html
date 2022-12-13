@@ -45,7 +45,7 @@
             </div>
             <div>
                 {% if request.user.is_authenticated %}
-                    <a href="{% url 'profile_view' %}" class="header-account"
+                    <a href="{% url 'profile_view'%}" class="header-account"
                        style='font-family: "DM Sans", sans-serif; color:#111;font-size: 18px;'>
                         <img src="{{ request.user.photo.url }}" style="width: 60px;padding-right: 5px;"
                              alt="profile picture">

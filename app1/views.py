@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import TemplateView, FormView, CreateView, ListView
+from django.views.generic import TemplateView, FormView, CreateView, ListView, UpdateView
 from django_resized import ResizedImageField
 
 from app1.forms import RegisterForm, LoginForm, EditProfileForm
@@ -86,12 +86,18 @@ class CustomAbout(TemplateView):
         return context
 
 
-class ProfileView(FormView):
+class ProfileView(UpdateView):
     template_name = 'app1/profile.html'
     form_class = EditProfileForm
+    success_url = reverse_lazy('profile_view')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
         context['future_posts'] = Post.objects.order_by('-created_at')[:3]
         return context
+
+    def get_object(self, queryset=None):
+        return User.objects.get(pk=self.request.user.pk)
+
+
 

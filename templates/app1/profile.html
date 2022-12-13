@@ -4,18 +4,20 @@
     <div class="container">
         <main>
             <form method="post" action="{% url 'profile_view' %}" enctype="multipart/form-data">
-                {%  csrf_token %}
+                {% csrf_token %}
                 <div class="row g-5">
                     <div class="col-md-5 col-lg-4">
                         <div class="py-5 text-center">
                             <img class="d-block mx-auto mb-4" src="{{ request.user.photo.url }}" alt="" width="200">
-                            <input class="form-control form-control-sm" name="photo" type="file" value="{{ request.user.photo }}"
+                            <input class="form-control form-control-sm" name="photo" type="file"
+                                   value="{{ request.user.photo }}"
                                    style="width: 60%;margin: auto">
-{#                            <input class="form-control" type="text" name="id" value="{{ request.user.id }}">#}
+                            {#                            <input class="form-control" type="text" name="id" value="{{ request.user.id }}">#}
                         </div>
                     </div>
                     <div class="col-md-7 col-lg-8">
                         <div class="row g-3">
+                            {{ form.errors }}
                             <div class="col-sm-6">
                                 <label class="form-label">First name</label>
                                 <input type="text" class="form-control" name="first_name"
@@ -42,20 +44,13 @@
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email" value="{{ request.user.email }}" disabled>
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Email</label>
-                                <input type="text" class="form-control" name="id" value="{{ request.user.id }}" disabled>
+                                <input type="email" class="form-control" name="email" value="{{ request.user.email }}">
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Phone Number</label>
                                 <div class="input-group">
-                                    <span class="input-group-text">+998</span>
                                     <input type="text" class="form-control" name="phone_number"
-                                           value="{% if request.user.phone_number %}
-                                                {{ request.user.phone_number }}
-                                              {% endif %}">
+                                           value="{{ request.user.phone_number }}">
                                 </div>
                             </div>
 
@@ -79,25 +74,25 @@
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4"></div>
                 <div class="col-md-7 col-lg-8">
-{#                    <form method="post">#}
-                        <div class="row g-3">
-                            <hr class="my-4">
-                            <h1 class="col-12" style="font-size: 20px">Change Password</h1>
-                            <div class="col-12">
-                                <label class="form-label">Current Password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">New Password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                            <div class="col-12">
-                                <label class="form-label">Confirm New Password</label>
-                                <input type="password" class="form-control">
-                            </div>
-                            <input class="w-100 btn btn-primary btn-lg" type="submit" value="SAVE">
+                    {#                    <form method="post">#}
+                    <div class="row g-3">
+                        <hr class="my-4">
+                        <h1 class="col-12" style="font-size: 20px">Change Password</h1>
+                        <div class="col-12">
+                            <label class="form-label">Current Password</label>
+                            <input type="password" class="form-control">
                         </div>
-{#                    </form>#}
+                        <div class="col-12">
+                            <label class="form-label">New Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Confirm New Password</label>
+                            <input type="password" class="form-control">
+                        </div>
+                        <input class="w-100 btn btn-primary btn-lg" type="submit" value="SAVE">
+                    </div>
+                    {#                    </form>#}
                 </div>
             </div>
         </main>

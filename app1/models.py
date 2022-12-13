@@ -15,11 +15,12 @@ class User(AbstractUser):
         FEMALE = 'female', 'Female'
         PENDING = 'pending', '------'
 
+
     email = EmailField(unique=True, blank=True)
     photo = ResizedImageField(size=[250, 250],crop=['middle', 'center'],upload_to='users', default='default.png')
     bio = CharField(max_length=70)
     gender = CharField(max_length=10, choices=Gender.choices, default=Gender.PENDING)
-    phone_number = CharField(max_length=25, null=True)
+    phone_number = CharField(max_length=25, default='Mavjud emas', null=True)
 
     class Meta:
         verbose_name_plural = 'Foydalanuvchilar'

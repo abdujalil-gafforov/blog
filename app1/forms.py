@@ -7,12 +7,12 @@ from app1.models import User
 
 class EditProfileForm(UserChangeForm):
 
-    def clean(self):
-        data = super().clean()
-        return data
+    # def clean(self):
+    #     data = super().clean()
+    #     return data
 
     class Meta:
-        fields = ('id', 'first_name', 'last_name', 'username', 'bio', 'email', 'phone_number', 'gender')
+        fields = ('id', 'first_name', 'last_name', 'username', 'bio', 'email', 'phone_number', 'gender', 'photo')
         model = User
 
 
