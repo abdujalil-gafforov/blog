@@ -1,11 +1,10 @@
-from random import choices
-
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db.models import RESTRICT, ImageField, ForeignKey, CharField, EmailField, TextChoices, SlugField, Model, \
     ManyToManyField, DateTimeField, IntegerField, DateField
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.text import slugify
 from django_resized import ResizedImageField
 
 
@@ -15,9 +14,8 @@ class User(AbstractUser):
         FEMALE = 'female', 'Female'
         PENDING = 'pending', '------'
 
-
     email = EmailField(unique=True, blank=True)
-    photo = ResizedImageField(size=[250, 250],crop=['middle', 'center'],upload_to='users', default='default.png')
+    photo = ResizedImageField(size=[250, 250], crop=['middle', 'center'], upload_to='users', default='default.png')
     bio = CharField(max_length=70)
     gender = CharField(max_length=10, choices=Gender.choices, default=Gender.PENDING)
     phone_number = CharField(max_length=25, default='Mavjud emas', null=True)
@@ -69,7 +67,8 @@ class Post(Model):
                 f'<a style="padding: 5px;margin: 3px;" class="button" href="cancel/{self.pk}">Cancel</a>'
             )
         elif self.is_publish == self.Status.ACTIVE:
-            return format_html(f'<a style="padding: 5px;margin: 3px;" class="button" href="cancel/{self.pk}">Cancel</a>')
+            return format_html(
+                f'<a style="padding: 5px;margin: 3px;" class="button" href="cancel/{self.pk}">Cancel</a>')
         elif self.is_publish == self.Status.CANCEL:
             return format_html(
                 f'<a style="padding: 5px;margin: 3px;" class="button" href="confirm/{self.pk}">Confirm</a>')
@@ -78,15 +77,34 @@ class Post(Model):
 
     def __str__(self):
         return str(self.id) + '. ' + self.title
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+
+            while Post.objects.filter(slug=self.slug).exists():
+                slug = Post.objects.filter(slug=self.slug).first().slug
+                if '-' in slug:
+                    try:
+                        if slug.split('-')[-1] in self.title:
+                            self.slug += '-1'
+                        else:
+                            self.slug = '-'.join(slug.split('-')[:-1]) + '-' + str(int(slug.split('-')[-1]) + 1)
+                    except:
+                        self.slug = slug + '-1'
+                else:
+                    self.slug += '-1'
+        super().save(*args, **kwargs)
     class Meta:
         verbose_name_plural = 'Postlar'
+        ordering = ('-created_at',)
 
 
 class Comment(Model):
-    post = ForeignKey(Post, on_delete=RESTRICT)
+    post = ForeignKey(Post, RESTRICT)
     user = ForeignKey(User, on_delete=RESTRICT)
     text = CharField(max_length=1024)
     created_at = DateField(auto_now_add=True)
+
     class Meta:
         verbose_name_plural = 'Izohlar'
         verbose_name = 'Izoh'
@@ -100,4 +118,3 @@ class About(Model):
     class Meta:
         verbose_name_plural = 'Ma\'lumot'
         verbose_name = 'Ma\'lumot'
-

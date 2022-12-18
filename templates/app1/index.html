@@ -6,15 +6,13 @@
             <div class="row">
                 <div class="col-12 col-md-5 col-lg-4 order-md-2">
                     <div class="blog-sidebar">
-                        <div class="blog-sidebar-section">
-                            <a href="" style="
-                        border: 2px solid #FF273C;
-                        margin: auto;
-                        width: 330px;
-                        height: 85px;
-                    ">
-                                <em class="bi bi-plus-square"></em>
-                                Add Post
+                        <div class="d-grid gap-2" style="padding: 10px 0;margin: 10px 0;">
+                            <a href="{% url 'createpost_view' %}" style="margin: 0;padding: 0">
+                                <button class="btn btn-primary"
+                                        style="width: 100%;background-color: white;color: #FF273C;border:2px #FF273C solid;font-size: 16px;"
+                                        type="button">
+                                    <em class="bi bi-plus-square"></em> Add Post
+                                </button>
                             </a>
                         </div>
                         <div class="blog-sidebar-section -category">
@@ -48,7 +46,7 @@
                                     <!-- Category Header -->
                                     <h5>Web Development</h5>
                                     <a href="#">Web Accessibility For Beginners..</a>
-                                    <div class="info__time"><i class="far fa-clock"></i>
+                                    <div class="info__time"><em class="far fa-clock"></em>
                                         <p>Nov 02, 2020</p>
                                     </div>
                                 </div>
@@ -66,7 +64,7 @@
                                     <!-- Category Header -->
                                     <h5>Ui/UxDesign</h5>
                                     <a href="#">Free Ui Design Resources</a>
-                                    <div class="info__time"><i class="far fa-clock"></i>
+                                    <div class="info__time"><em class="far fa-clock"></em>
                                         <p>Nov 02, 2020</p>
                                     </div>
                                 </div>
@@ -84,7 +82,7 @@
                                     <!-- Category Header -->
                                     <h5>Web Development</h5>
                                     <a href="#">Should you Learn PHP iN 2020</a>
-                                    <div class="info__time"><i class="far fa-clock"></i>
+                                    <div class="info__time"><em class="far fa-clock"></em>
                                         <p>Nov 02, 2020</p>
                                     </div>
                                 </div>
@@ -138,35 +136,35 @@
                     <div class="row">
                         <div class="col-sm-6 col-md-12">
                             <div class="post-card -full -center">
-                                <a class="card__cover" href="{% url 'post_view' last_post.slug %}">
-                                    <img src="{{ last_post.image.url }}"
-                                         alt="{{ last_post.title }}"/>
+                                <a class="card__cover" href="{% url 'post_view' posts.first.slug %}">
+                                    <img src="{{ posts.first.image.url }}"
+                                         alt="{{ posts.first.title }}"/>
                                 </a>
                                 <div class="card__content">
                                     <!-- Content Category -->
                                     <h5 class="card__content-category">
-                                        {% for category in last_post.category.all %}{{ category.name }}
+                                        {% for category in posts.first.category.all %}{{ category.name }}
                                             ,{% endfor %}</h5>
                                     <!-- Content Heading -->
                                     <a class="card__content-title"
-                                       href="{% url 'post_view' last_post.slug %}">{{ last_post.title }}</a>
+                                       href="{% url 'post_view' posts.first.slug %}">{{ posts.first.title }}</a>
                                     <div class="card__content-info">
                                         <!-- Content Author -->
                                         <div class="info__time info__author"><i class="far fa-user"></i>
-                                            <p>{{ last_post.user.first_name }}</p>
+                                            <p>{{ posts.first.user.first_name }}</p>
                                         </div>
                                         <!-- Content Time and Date -->
                                         <div class="info__time"><i class="far fa-clock"></i>
-                                            <p>{{ last_post.created_at }}</p>
+                                            <p>Clock {{ posts.first.created_at|date:"D m, Y" }}</p>
                                         </div>
                                         <!-- Comments -->
                                         <div class="info__comment"><i class="far fa-comment"></i>
-                                            <p>{{ last_post.comment_set.count }}</p>
+                                            <p>{{ posts.first.comment_set.count }}</p>
                                         </div>
                                     </div>
                                     <!-- post Description -->
-                                    <p class="card__content-description">{{ last_post.body|truncatewords:30 }}</p>
-                                    <a class="more-btn" href="{% url 'post_view' last_post.slug %}">Read more </a>
+                                    <p class="card__content-description">{{ posts.first.body|truncatewords:30|safe }}</p>
+                                    <a class="more-btn" href="{% url 'post_view' posts.first.slug %}">Read more </a>
                                 </div>
                             </div>
                         </div>
@@ -175,7 +173,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="row">
-                                            {% for post in posts %}
+                                            {% for post in posts|slice:"1:" %}
                                                 <div class="col-12 col-sm-6">
                                                     <div class="post-card -small">
                                                         <a class="card__cover" href="{% url 'post_view' post.slug %}">
@@ -191,10 +189,10 @@
                                                                href="{% url 'post_view' post.slug %}">{{ post.title }}</a>
                                                             <div class="card__content-info">
                                                                 <div class="info__time"><i class="far fa-clock"></i>
-                                                                    <p>{{ post.created_at }}</p>
+                                                                    <p>Clock {{ post.created_at|date:"D m, Y" }}</p>
                                                                 </div>
-                                                                <div class="info__comment"><i
-                                                                        class="far fa-comment"></i>
+                                                                <div class="info__comment">
+                                                                    <i class="far fa-comment"></i>
                                                                     <p>{{ post.comment_set.count }}</p>
                                                                 </div>
                                                             </div>

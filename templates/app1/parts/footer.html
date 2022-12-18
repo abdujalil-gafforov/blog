@@ -20,22 +20,22 @@
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="footer-col -feature-post">
                         <div class="center-line-title">
-                            <h5>Feature posts</h5>
+                            <h5>Latest posts</h5>
                         </div>
                         <div class="feature-post-block">
-                            {% for future_post in future_posts %}
+                            {% for latest_post in latest_posts %}
                                 <div class="post-card -tiny">
                                     <a class="card__cover" href="#">
                                         <!-- img size 360 x 360 -->
-                                        <img src="{{ future_post.image.url}}"
+                                        <img src="{{ latest_post.image.url}}"
                                              alt="Best Open Source Tools For Developers">
                                     </a>
                                     <div class="card__content">
                                         <h5 class="card__content-category">Open source</h5>
-                                        <a class="card__content-title" href="#">{{ future_post.title }}</a>
+                                        <a class="card__content-title" href="#">{{ latest_post.title }}</a>
                                         <div class="card__content-info">
                                             <div class="info__time"><i class="far fa-clock"></i>
-                                                <p>{{ future_post.created_at }}</p>
+                                                <p>Clock {{ latest_post.created_at|date:"D m, Y" }}</p>
                                             </div>
                                         </div>
                                     </div>

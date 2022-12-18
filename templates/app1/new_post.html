@@ -1,0 +1,65 @@
+{% extends 'app1/parts/base.html' %}
+{% block title %}
+    Create Post
+{% endblock %}
+{% block main_content %}
+    <div class="container">
+        <form method="post" action="{% url 'createpost_view' %}" enctype="multipart/form-data" class="needs-validation">
+
+            <div class="row g-5">
+                {% csrf_token %}
+                <div class="col-xl-12">
+                    <div class="row g-3">
+                        <h1 style="font-size: 27px;text-align: center;padding-bottom: 60px">Create new post</h1>
+                            <div class="row gx-3 mb-3">
+                                <div class="col-md-6">
+                                    <label class="small mb-1" for="title">Title</label>
+                                    <input class="form-control" id="title" type="text"
+                                           placeholder="Enter post title" name="title" required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide a title.
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="small mb-1">Banner image</label>
+                                    <input class="form-control" id="file" type="file" name="image"
+                                           required>
+                                    <div class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please provide an image.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="small mb-1" for="category">Category</label>
+                                <select id="category" name="category" class="custom-select" required multiple>
+                                    {% for category in categories %}
+                                        <option value="{{ category.id }}">{{ category.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Select at least one category.
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="editor1">Content</label>
+                                <textarea name="body" id="editor1" rows="10" cols="80" required></textarea>
+                            </div>
+                            <input class="btn btn-info" type="submit" value="Submit post">
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+{% endblock %}
+
+

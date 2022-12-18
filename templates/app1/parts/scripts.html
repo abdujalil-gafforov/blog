@@ -6,3 +6,10 @@
 <script rel="script/javascript" src="{% static 'app1/assets/js/imagesloaded.pkgd.min.js' %}"></script>
 <script rel="script/javascript" src="{% static 'app1/assets/js/vimeo.player.min.js' %}"></script>
 <script rel="script/javascript" src="{% static 'app1/assets/js/main.js' %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script>
+    CKEDITOR.replace('editor1', {
+        width: "100%",
+    });
+</script>

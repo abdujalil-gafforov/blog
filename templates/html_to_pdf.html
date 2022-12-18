@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+{% load static %}
+<html>
+    <head>
+        <title>Title</title>
+        <style type="text/css">
+            body {
+                font-weight: 200;
+                font-size: 14px;
+            }
+            .header {
+                font-size: 20px;
+                font-weight: 100;
+                text-align: center;
+                color: #007cae;
+            }
+            .title {
+                font-size: 22px;
+                font-weight: 100;
+                padding: 10px 20px 0 20px;
+            }
+            .title span {
+                color: #007cae;
+            }
+            .details {
+                padding: 10px 20px 0 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class='wrapper'>
+            <div class='header'>
+                <p class='title'>{{ post.title }}</p>
+            </div>
+        </div>
+        <div class='details'>
+            <img src="{{ post.image.url }}" alt="">
+            {{ post.body|safe }}
+        </div>
+    </div>
+    </body>
+</html>

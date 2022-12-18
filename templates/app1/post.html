@@ -50,8 +50,19 @@
                 </div>
                 <!-- content Starts here -->
                 <p class="paragraph">
-                    {{ post.body }}
+                    {{ post.body|safe }}
                 </p>
+                  <a href="{% url 'pdf' post.slug %}"><button style="
+                    margin: 10px;
+                    color: white;
+                    background-color: #FF273C;
+                    padding: 15px;
+                    font-size: 15px;
+                    border: 0;
+                    border-radius: 3px;
+                    float: right;
+                    ">Download PDF Format</button></a>
+              <div style="clear: both;"></div>
                 <!-- Post footer -->
                 <div class="post-footer">
                   <div class="post-footer__author">
@@ -80,39 +91,11 @@
                         </div>
                     </div>
                   </div>
-                  <!-- Related Posts -->
-                  <div class="post-footer__related">
-                    <div class="post-footer__related__item -prev">
-                      <!-- <a href="post_standard.html"> <i class="fas fa-chevron-left"></i>Previous posts</a> -->
-                      <div class="post-footer__related__item__content">
-                        <!-- img size 360 x 360 -->
-                          <img src="{% static 'app1/assets/images/posts/webdesign.jpg' %}" alt="Relate news image"/>
-                        <div class="post-card ">
-                            <div></div>
-                            <div class="card__content">
-                              <h5 class="card__content-category">Open Source</h5>
-                              <a class="card__content-title" href="#">Best design resources websites every developer should bookmark</a>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="post-footer__related__item -next">
-                      <!-- <a href="#">Next posts<i class="fas fa-chevron-right"></i></a> -->
-                      <div class="post-footer__related__item__content">
-                        <div class="post-card -right">
-                          <div></div>
-                          <div class="card__content">
-                            <h5 class="card__content-category">Open Source</h5>
-                              <a class="card__content-title" href="#">Best Open Source Tools For Developers</a>
-                          </div>
-                        </div>
-                         <img src="{% static 'app1/assets/images/posts/opensource.jpg' %}" alt="Relate news image"/>
-                      </div>
-                    </div>
-                  </div>
                   <!-- comments  -->
                   <div class="post-footer__comment">
+                  {% if post.comment_set.count %}
                     <h3 class="comment-title"> <span>{{ post.comment_set.count }} comment</span></h3>
+                  {% endif %}
                     <div class="post-footer__comment__detail">
                         {% for comment in comments %}
                                                   <div class="comment__item">
@@ -124,8 +107,6 @@
                             <h5>{{ comment.user.first_name }}</h5>
                             <div class="data">
                               <p><i class="far fa-clock"></i>{{ comment.created_at }}</p>
-{#                              <p><i class="far fa-heart"></i>12</p>#}
-{#                              <p><i class="far fa-share-square"></i>1</p>#}
                             </div>
                           </div>
                           <p>{{ comment.text }}</p>
