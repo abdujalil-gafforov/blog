@@ -37,6 +37,16 @@ class AboutAdmin(ModelAdmin):
 @admin.register(Post)
 class PostAdmin(ModelAdmin):
     list_display = ('title', 'id', 'slug', 'status_icon', 'status_buttons')
+    readonly_fields = ('is_publish',)
+
+
+    def response_change(self, request, obj):
+        if "status" in request.POST:
+            if request.POST["status"] == "active":
+                self.confirmed(request, obj.id)
+            if request.POST["status"] == "cancel":
+                self.canceled(request, obj.id)
+        return super().response_change(request, obj)
 
     def get_urls(self):
         urls = super().get_urls()

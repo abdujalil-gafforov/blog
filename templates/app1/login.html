@@ -21,7 +21,7 @@
 				<div class="login100-pic js-tilt" data-tilt>
 					<img src="{% static 'app1/images/img-01.png' %}" alt="IMG">
 				</div>
-
+                {% block form %}
 				<form method="post" class="login100-form validate-form">
                     {% csrf_token %}
 					<span class="login100-form-title">
@@ -43,7 +43,7 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
+
 					<div class="container-login100-form-btn">
 						<button class="login100-form-btn">
 							Log in
@@ -54,7 +54,7 @@
 						<span class="txt1">
 							Forgot
 						</span>
-						<a class="txt2" href="#">
+						<a class="txt2" href="{% url 'password_reset' %}">
 							Username / Password?
 						</a>
 					</div>
@@ -66,6 +66,7 @@
 						</a>
 					</div>
 				</form>
+                {% endblock %}
 			</div>
 		</div>
 	</div>

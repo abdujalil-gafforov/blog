@@ -1,0 +1,17 @@
+{% extends 'admin/change_form.html' %}
+
+{% block after_related_objects %}
+
+    <label class="required" style="margin: 0 50px 0 10px">Status: </label>
+    <input type="submit" style="background-color: #4bb086; margin: 0 20px 30px 0;" value="active" name="status">
+    <input type="submit" style="background-color: #ff0000; margin: 0 20px 30px 0;" value="cancel" name="status">
+    <button style="
+        background-color: #53a39b;
+        margin: 0 20px 30px 0;
+        border: 0;
+        border-radius: 4px;
+        padding: 10px;
+    ">
+        <a href="{% url 'post_view' original.slug %}" style="color: white">View Post</a></button>
+{% endblock %}
+

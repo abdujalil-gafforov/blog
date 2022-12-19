@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db.models import RESTRICT, ImageField, ForeignKey, CharField, EmailField, TextChoices, SlugField, Model, \
-    ManyToManyField, DateTimeField, IntegerField, DateField
+    ManyToManyField, DateTimeField, IntegerField, DateField, BooleanField
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
@@ -17,6 +17,7 @@ class User(AbstractUser):
     email = EmailField(unique=True, blank=True)
     photo = ResizedImageField(size=[250, 250], crop=['middle', 'center'], upload_to='users', default='default.png')
     bio = CharField(max_length=70)
+    is_active = BooleanField(default=False)
     gender = CharField(max_length=10, choices=Gender.choices, default=Gender.PENDING)
     phone_number = CharField(max_length=25, default='Mavjud emas', null=True)
 
@@ -55,10 +56,10 @@ class Post(Model):
     created_at = DateTimeField(auto_now_add=True)
     updated_at = DateTimeField(auto_now=True)
     user = ForeignKey(User, on_delete=RESTRICT)
-    is_publish = CharField(max_length=25, choices=Status.choices, default=Status.PENDING)
     image = ImageField(upload_to='post/%m')
     views_count = IntegerField(default=0)
     slug = SlugField(max_length=100, unique=True)
+    is_publish = CharField(max_length=25, choices=Status.choices, default=Status.PENDING)
 
     def status_buttons(self):
         if self.is_publish == self.Status.PENDING:

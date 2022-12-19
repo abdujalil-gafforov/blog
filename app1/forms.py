@@ -16,7 +16,7 @@ class ChangePasswordForm(Form):
 
 class EditProfileForm(UserChangeForm):
     class Meta:
-        fields = ('id', 'first_name', 'last_name', 'username', 'bio', 'email', 'phone_number', 'gender', 'photo')
+        fields = ('id', 'first_name', 'last_name', 'username', 'bio', 'phone_number', 'gender', 'photo')
         model = User
 
 

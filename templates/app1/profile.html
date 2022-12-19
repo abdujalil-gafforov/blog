@@ -51,14 +51,15 @@
                             <div class="col-12">
                                 <label class="form-label">Email</label>
                                 <label class="input-group">
-                                    <input type="email" class="form-control" name="email" value="{{ user.email }}">
+                                    <input type="email" class="form-control" name="email" value="{{ user.email }}" disabled>
                                 </label>
                             </div>
                             <div class="col-12">
                                 <label class="form-label">Phone Number</label>
                                 <div class="input-group">
                                     <label class="input-group">
-                                        <input type="text" class="form-control" name="phone_number"
+                                        <input type="tel" data-phonemask="+998 (__)___-__-__"
+                                               class="masked-phone form-control" name="phone_number"
                                                value="{{ user.phone_number }}">
                                     </label>
                                 </div>
@@ -86,10 +87,13 @@
             <div class="row g-5">
                 <div class="col-md-5 col-lg-4"></div>
                 <div class="col-md-7 col-lg-8">
-                    <form method="post" action="{% url "profile_view" %}">
+                    <form method="post" action="{% url "change_password" %}">
                         {% csrf_token %}
                         <div class="row g-3">
                             <hr class="my-4">
+                            {% if error %}
+                            <p style="border: {{ color }} solid 2px; color: {{ color }}; padding: 15px; border-radius: 5px;">{{ error }}</p>
+                            {% endif %}
                             <h1 class="col-12" style="font-size: 20px">Change Password</h1>
                             <div class="col-12">
                                 <label class="form-label">Current Password</label>

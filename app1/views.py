@@ -1,19 +1,32 @@
 from datetime import datetime
-
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import login, get_user_model
+from django.contrib.auth.hashers import check_password
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.utils.decorators import method_decorator
 from django.views import View
-from django.views.generic import TemplateView, FormView, CreateView, ListView, UpdateView
-from django_resized import ResizedImageField
-
+from django.views.generic import TemplateView, FormView, CreateView, UpdateView
 from app1.forms import RegisterForm, LoginForm, EditProfileForm, CreatePostForm, ChangePasswordForm
 from app1.models import Category, Post, User, Comment, About
 from app1.utils.html_to_pdf import render_to_pdf
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_str
+from django.core.mail import EmailMessage
+from .tokens import account_activation_token
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'app1/reset_password.html'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = HttpResponse('main_view')
 
 
 class MainView(TemplateView):
@@ -104,6 +117,11 @@ class RegisterView(CreateView):
     form_class = RegisterForm
     success_url = 'login'
 
+    def form_valid(self, form):
+        user = form.save()
+        ActivateEmail(self.request, user, user.email)
+        return super().form_valid(form)
+
 
 class CustomAbout(TemplateView):
     def get_context_data(self, **kwargs):
@@ -131,6 +149,25 @@ class ChangePasswordView(LoginRequiredMixin, FormView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy('profile_view')
 
+    def form_valid(self, form):
+        if check_password(form.cleaned_data['password'], self.request.user.password):
+            if form.cleaned_data['new_password'] == form.cleaned_data['confirm_password']:
+                user = self.request.user
+                name = user.username
+                user.set_password(form.cleaned_data['new_password'])
+                user.save()
+                user = User.objects.get(username=name)
+                if user:
+                    login(self.request, user)
+                    return render(self.request, self.template_name,
+                                  {'error': 'Password Successfully changed', 'color': 'green'})
+            else:
+                return render(self.request, self.template_name,
+                              {'error': 'Confirm Password is incorrect', 'color': 'red'})
+        else:
+            return render(self.request, self.template_name, {'error': 'Current Password is incorrect', 'color': 'red'})
+        return super().form_valid(form)
+
 
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
@@ -140,3 +177,46 @@ class GeneratePdf(View):
         }
         pdf = render_to_pdf('html_to_pdf.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
+
+
+def ActivateEmail(request, user, to_email):
+    mail_subject = 'Activate your user account.'
+    message = render_to_string('activate_acc_email_msg.html', {
+        'user': user.username,
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': account_activation_token.make_token(user),
+        'protocol': 'https' if request.is_secure() else 'http'
+    })
+    email = EmailMessage(mail_subject, message, to=[to_email])
+    if email.send():
+        messages.success(request, f'Dear <b>{user}</b>, please go to you email <b>{to_email}</b> inbox and click on \
+            received activation link to confirm and complete the registration. <b>Note:</b> Check your spam folder.')
+    else:
+        messages.error(request, f'Problem sending confirmation email to {to_email}, check if you typed it correctly.')
+
+
+def activate(request, uidb64, token):
+    user1 = get_user_model()
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = user1.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, user1.DoesNotExist):
+        user = None
+
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+
+        messages.success(request, 'Thank you for your email confirmation. Now you can login your account.')
+        return redirect('login_view')
+    else:
+        messages.error(request, 'Activation link is invalid!')
+
+    return redirect('main_view')
+
+
+def test(request):
+    user = User.objects.get(username='pepe')
+    ActivateEmail(request, user, user.email)
+    return redirect('main_view')
