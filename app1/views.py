@@ -20,6 +20,8 @@ from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
+
+
 class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
     template_name = 'app1/reset_password.html'
     success_message = "We've emailed you instructions for setting your password, " \
@@ -27,6 +29,15 @@ class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
                       " If you don't receive an email, " \
                       "please make sure you've entered the address you registered with, and check your spam folder."
     success_url = HttpResponse('main_view')
+
+
+class MyPosts(TemplateView):
+    template_name = 'app1/my_posts.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['myposts'] = Post.objects.filter(user=self.request.user.pk)
+        return context
 
 
 class MainView(TemplateView):
@@ -119,6 +130,8 @@ class RegisterView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        user.is_active = False
+        user.save()
         ActivateEmail(self.request, user, user.email)
         return super().form_valid(form)
 

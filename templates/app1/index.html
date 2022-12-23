@@ -1,207 +1,210 @@
 {% extends 'app1/parts/base.html' %}
 {% load static %}
 {% block main_content %}
-    <div class="container">
-        <div class="blog-with-sidebar">
-            <div class="row">
-                <div class="col-12 col-md-5 col-lg-4 order-md-2">
-                    <div class="blog-sidebar">
-                        <div class="d-grid gap-2" style="padding: 10px 0;margin: 10px 0;">
-                            <a href="{% url 'createpost_view' %}" style="margin: 0;padding: 0">
-                                <button class="btn btn-primary"
-                                        style="width: 100%;background-color: white;color: #FF273C;border:2px #FF273C solid;font-size: 16px;"
-                                        type="button">
-                                    <em class="bi bi-plus-square"></em> Add Post
-                                </button>
-                            </a>
-                        </div>
-                        <div class="blog-sidebar-section -category">
-                            <div class="center-line-title">
-                                <h5>Categories</h5>
-                            </div>
-                            <a class="category -bar " href="{% url 'blog_view' %}">
-                                <!--Category 1::Background Image size is 340 x 80   -->
-                                {% for category in  categories %}
-                                    <div class="category__background"
-                                         style="background-image: url({{ category.image.url }})"></div>
-                                    <h5 class="title">{{ category.name }}</h5>
-                                    <h5 class="quantity">{{ category.post_set.count }}</h5></a>
-                                    <a class="category -bar " href="{% url 'blog_view' %}">
-                                {% endfor %}
-                                </a>
-                        </div>
-                        <div class="blog-sidebar-section -trending-post">
-                            <div class="center-line-title">
-                                <h5>Trending post</h5>
-                            </div>
-                            <!--Trending Post 1 -->
-                            <div class="trending-post">
-                                <div class="trending-post_image">
-                                    <div class="rank">1</div>
-                                    <!--Img size is 100 x 100 -->
-                                    <img src="{% static 'app1/assets/images/backgrounds/trending-post-a.png' %}"
-                                         alt="Web Accessibility For Beginners.."/>
-                                </div>
-                                <div class="trending-post_content">
-                                    <!-- Category Header -->
-                                    <h5>Web Development</h5>
-                                    <a href="#">Web Accessibility For Beginners..</a>
-                                    <div class="info__time"><em class="far fa-clock"></em>
-                                        <p>Nov 02, 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Trending Post 2 -->
-                            <div class="trending-post">
-                                <div class="trending-post_image">
-                                    <div class="rank">2</div>
-                                    <!--Img size is 100 x 100 -->
-                                    <img src="{% static 'app1/assets/images/backgrounds/trending-post-b.png' %}"
-                                         alt="Free Ui Design Resources"/>
-                                </div>
-                                <div class="trending-post_content">
-                                    <!-- Category Header -->
-                                    <h5>Ui/UxDesign</h5>
-                                    <a href="#">Free Ui Design Resources</a>
-                                    <div class="info__time"><em class="far fa-clock"></em>
-                                        <p>Nov 02, 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Trending Post 3 -->
-                            <div class="trending-post">
-                                <div class="trending-post_image">
-                                    <div class="rank">3</div>
-                                    <!--Img size is 100 x 100 -->
-                                    <img src="{% static 'app1/assets/images/backgrounds/trending-post-c.png' %}"
-                                         alt="Here's How Your Diet Can Help Yo Excel in Exams"/>
-                                </div>
-                                <div class="trending-post_content">
-                                    <!-- Category Header -->
-                                    <h5>Web Development</h5>
-                                    <a href="#">Should you Learn PHP iN 2020</a>
-                                    <div class="info__time"><em class="far fa-clock"></em>
-                                        <p>Nov 02, 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Trending Post 4 -->
-                            <div class="trending-post">
-                                <div class="trending-post_image">
-                                    <div class="rank">4</div>
-                                    <!--Img size is 100 x 100 -->
-                                    <img src="{% static 'app1/assets/images/backgrounds/trending-post-d.png' %}"
-                                         alt="why others accept while AudioJungle..."/>
-                                </div>
-                                <div class="trending-post_content">
-                                    <!-- Category Header -->
-                                    <h5>Open-source</h5>
-                                    <a href="#">Fuse Free Open source Blog...</a>
-                                    <div class="info__time"><i class="far fa-clock"></i>
-                                        <p>Nov 02, 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Trending Post 5 -->
-                            <div class="trending-post">
-                                <div class="trending-post_image">
-                                    <div class="rank">5</div>
-                                    <!--Img size is 100 x 100 -->
-                                    <img src="{% static 'app1/assets/images/backgrounds/trending-post-e.jpg' %}"
-                                         alt="Is node Js Dead??...Long live Deno"/>
-                                </div>
-                                <div class="trending-post_content">
-                                    <!-- Category Header -->
-                                    <h5>Web Development</h5>
-                                    <a href="#">Is node Js Dead??...Long live Deno</a>
-                                    <div class="info__time"><i class="far fa-clock"></i>
-                                        <p>Nov 02, 2020</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <form class="subcribe-box subcribe-box" action="/" method="POST">
-                            <h5>Subcribe</h5>
-                            <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed tempor.</p>
-                            <input placeholder="Your email" name="email" type="email"><a class="btn -normal"
-                                                                                         href="#">Subcribe</a>
-                        </form>
+<div class="container">
+    <div class="blog-with-sidebar">
+        <div class="row">
+            <div class="col-12 col-md-5 col-lg-4 order-md-2">
+                <div class="blog-sidebar">
+                    {% if user.is_authenticated %}
+                    <div class="d-grid gap-2" style="padding: 10px 0;margin: 10px 0;">
+                        <a href="{% url 'createpost_view' %}" style="margin: 0;padding: 0">
+                            <button class="btn btn-primary"
+                                    style="width: 100%;background-color: white;color: #FF273C;border:2px #FF273C solid;font-size: 16px;"
+                                    type="button">
+                                <em class="bi bi-plus-square"></em> Add Post
+                            </button>
+                        </a>
                     </div>
-                </div>
-                <div class="col-12 col-md-7 col-lg-8 order-md-1">
-                    <div class="row">
-                        <div class="col-sm-6 col-md-12">
-                            <div class="post-card -full -center">
-                                <a class="card__cover" href="{% url 'post_view' posts.first.slug %}">
-                                    <img src="{{ posts.first.image.url }}"
-                                         alt="{{ posts.first.title }}"/>
-                                </a>
-                                <div class="card__content">
-                                    <!-- Content Category -->
-                                    <h5 class="card__content-category">
-                                        {% for category in posts.first.category.all %}{{ category.name }}
-                                            ,{% endfor %}</h5>
-                                    <!-- Content Heading -->
-                                    <a class="card__content-title"
-                                       href="{% url 'post_view' posts.first.slug %}">{{ posts.first.title }}</a>
-                                    <div class="card__content-info">
-                                        <!-- Content Author -->
-                                        <div class="info__time info__author"><i class="far fa-user"></i>
-                                            <p>{{ posts.first.user.first_name }}</p>
-                                        </div>
-                                        <!-- Content Time and Date -->
-                                        <div class="info__time"><i class="far fa-clock"></i>
-                                            <p>Clock {{ posts.first.created_at|date:"D m, Y" }}</p>
-                                        </div>
-                                        <!-- Comments -->
-                                        <div class="info__comment"><i class="far fa-comment"></i>
-                                            <p>{{ posts.first.comment_set.count }}</p>
-                                        </div>
-                                    </div>
-                                    <!-- post Description -->
-                                    <p class="card__content-description">{{ posts.first.body|truncatewords:30|safe }}</p>
-                                    <a class="more-btn" href="{% url 'post_view' posts.first.slug %}">Read more </a>
+                    {% endif %}
+                    <div class="blog-sidebar-section -category">
+                        <div class="center-line-title">
+                            <h5>Categories</h5>
+                        </div>
+                        <a class="category -bar " href="{% url 'blog_view' %}">
+                            <!--Category 1::Background Image size is 340 x 80   -->
+                            {% for category in categories %}
+                            <div class="category__background"
+                                 style="background-image: url({{ category.image.url }})"></div>
+                            <h5 class="title">{{ category.name }}</h5>
+                            <h5 class="quantity">{{ category.post_set.count }}</h5></a>
+                        <a class="category -bar " href="{% url 'blog_view' %}">
+                            {% endfor %}
+                        </a>
+                    </div>
+                    <div class="blog-sidebar-section -trending-post">
+                        <div class="center-line-title">
+                            <h5>Trending post</h5>
+                        </div>
+                        <!--Trending Post 1 -->
+                        <div class="trending-post">
+                            <div class="trending-post_image">
+                                <div class="rank">1</div>
+                                <!--Img size is 100 x 100 -->
+                                <img src="{% static 'app1/assets/images/backgrounds/trending-post-a.png' %}"
+                                     alt="Web Accessibility For Beginners.."/>
+                            </div>
+                            <div class="trending-post_content">
+                                <!-- Category Header -->
+                                <h5>Web Development</h5>
+                                <a href="#">Web Accessibility For Beginners..</a>
+                                <div class="info__time"><em class="far fa-clock"></em>
+                                    <p>Nov 02, 2020</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="news-block__content -default">
-                            <div class="news-block__content__slide">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row">
-                                            {% for post in posts|slice:"1:" %}
-                                                <div class="col-12 col-sm-6">
-                                                    <div class="post-card -small">
-                                                        <a class="card__cover" href="{% url 'post_view' post.slug %}">
-                                                            <!-- img size 370 x 247 -->
-                                                            <img src="{{ post.image.url }}"
-                                                                 alt="{{ post.title }}"/></a>
-                                                        <!-- Post content -->
-                                                        <div class="card__content">
-                                                            <h5 class="card__content-category">
-                                                                {% for category in post.category.all %}
-                                                                    {{ category.name }},{% endfor %}</h5>
-                                                            <a class="card__content-title"
-                                                               href="{% url 'post_view' post.slug %}">{{ post.title }}</a>
-                                                            <div class="card__content-info">
-                                                                <div class="info__time"><i class="far fa-clock"></i>
-                                                                    <p>Clock {{ post.created_at|date:"D m, Y" }}</p>
-                                                                </div>
-                                                                <div class="info__comment">
-                                                                    <i class="far fa-comment"></i>
-                                                                    <p>{{ post.comment_set.count }}</p>
-                                                                </div>
-                                                            </div>
+
+                        <!-- Trending Post 2 -->
+                        <div class="trending-post">
+                            <div class="trending-post_image">
+                                <div class="rank">2</div>
+                                <!--Img size is 100 x 100 -->
+                                <img src="{% static 'app1/assets/images/backgrounds/trending-post-b.png' %}"
+                                     alt="Free Ui Design Resources"/>
+                            </div>
+                            <div class="trending-post_content">
+                                <!-- Category Header -->
+                                <h5>Ui/UxDesign</h5>
+                                <a href="#">Free Ui Design Resources</a>
+                                <div class="info__time"><em class="far fa-clock"></em>
+                                    <p>Nov 02, 2020</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trending Post 3 -->
+                        <div class="trending-post">
+                            <div class="trending-post_image">
+                                <div class="rank">3</div>
+                                <!--Img size is 100 x 100 -->
+                                <img src="{% static 'app1/assets/images/backgrounds/trending-post-c.png' %}"
+                                     alt="Here's How Your Diet Can Help Yo Excel in Exams"/>
+                            </div>
+                            <div class="trending-post_content">
+                                <!-- Category Header -->
+                                <h5>Web Development</h5>
+                                <a href="#">Should you Learn PHP iN 2020</a>
+                                <div class="info__time"><em class="far fa-clock"></em>
+                                    <p>Nov 02, 2020</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trending Post 4 -->
+                        <div class="trending-post">
+                            <div class="trending-post_image">
+                                <div class="rank">4</div>
+                                <!--Img size is 100 x 100 -->
+                                <img src="{% static 'app1/assets/images/backgrounds/trending-post-d.png' %}"
+                                     alt="why others accept while AudioJungle..."/>
+                            </div>
+                            <div class="trending-post_content">
+                                <!-- Category Header -->
+                                <h5>Open-source</h5>
+                                <a href="#">Fuse Free Open source Blog...</a>
+                                <div class="info__time"><i class="far fa-clock"></i>
+                                    <p>Nov 02, 2020</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Trending Post 5 -->
+                        <div class="trending-post">
+                            <div class="trending-post_image">
+                                <div class="rank">5</div>
+                                <!--Img size is 100 x 100 -->
+                                <img src="{% static 'app1/assets/images/backgrounds/trending-post-e.jpg' %}"
+                                     alt="Is node Js Dead??...Long live Deno"/>
+                            </div>
+                            <div class="trending-post_content">
+                                <!-- Category Header -->
+                                <h5>Web Development</h5>
+                                <a href="#">Is node Js Dead??...Long live Deno</a>
+                                <div class="info__time"><i class="far fa-clock"></i>
+                                    <p>Nov 02, 2020</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form class="subcribe-box subcribe-box" action="/" method="POST">
+                        <h5>Subcribe</h5>
+                        <p>Lorem ipsum dolor amet, consectetur adipiscing elit, sed tempor.</p>
+                        <input placeholder="Your email" name="email" type="email"><a class="btn -normal"
+                                                                                     href="#">Subcribe</a>
+                    </form>
+                </div>
+            </div>
+            <div class="col-12 col-md-7 col-lg-8 order-md-1">
+                <div class="row">
+                    <div class="col-sm-6 col-md-12">
+                        {% if posts %}
+                        <div class="post-card -full -center">
+                            <a class="card__cover" href="{% url 'post_view' posts.first.slug %}">
+                                <img src="{{ posts.first.image.url }}"
+                                     alt="{{ posts.first.title }}"/>
+                            </a>
+                            <div class="card__content">
+                                <!-- Content Category -->
+                                <h5 class="card__content-category">
+                                    {% for category in posts.first.category.all %}{{ category.name }}
+                                    ,{% endfor %}</h5>
+                                <!-- Content Heading -->
+                                <a class="card__content-title"
+                                   href="{% url 'post_view' posts.first.slug %}">{{ posts.first.title }}</a>
+                                <div class="card__content-info">
+                                    <!-- Content Author -->
+                                    <div class="info__time info__author"><i class="far fa-user"></i>
+                                        <p>{{ posts.first.user.first_name }}</p>
+                                    </div>
+                                    <!-- Content Time and Date -->
+                                    <div class="info__time"><i class="far fa-clock"></i>
+                                        <p>Clock {{ posts.first.created_at|date:"D m, Y" }}</p>
+                                    </div>
+                                    <!-- Comments -->
+                                    <div class="info__comment"><i class="far fa-comment"></i>
+                                        <p>{{ posts.first.comment_set.count }}</p>
+                                    </div>
+                                </div>
+                                <!-- post Description -->
+                                <p class="card__content-description">{{ posts.first.body|truncatewords:30|safe }}</p>
+                                <a class="more-btn" href="{% url 'post_view' posts.first.slug %}">Read more </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="news-block__content -default">
+                        <div class="news-block__content__slide">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        {% for post in posts|slice:"1:" %}
+                                        <div class="col-12 col-sm-6">
+                                            <div class="post-card -small">
+                                                <a class="card__cover" href="{% url 'post_view' post.slug %}">
+                                                    <!-- img size 370 x 247 -->
+                                                    <img src="{{ post.image.url }}"
+                                                         alt="{{ post.title }}"/></a>
+                                                <!-- Post content -->
+                                                <div class="card__content">
+                                                    <h5 class="card__content-category">
+                                                        {% for category in post.category.all %}
+                                                        {{ category.name }},{% endfor %}</h5>
+                                                    <a class="card__content-title"
+                                                       href="{% url 'post_view' post.slug %}">{{ post.title }}</a>
+                                                    <div class="card__content-info">
+                                                        <div class="info__time"><i class="far fa-clock"></i>
+                                                            <p>Clock {{ post.created_at|date:"D m, Y" }}</p>
+                                                        </div>
+                                                        <div class="info__comment">
+                                                            <i class="far fa-comment"></i>
+                                                            <p>{{ post.comment_set.count }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            {% endfor %}
-
+                                            </div>
                                         </div>
+                                        {% endfor %}
+
                                     </div>
                                 </div>
                             </div>
@@ -211,4 +214,5 @@
             </div>
         </div>
     </div>
+</div>
 {% endblock %}

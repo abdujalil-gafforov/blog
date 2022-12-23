@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LogoutView, PasswordResetConfirmView, PasswordResetCompleteView
 from django.urls import path
 from app1.views import MainView, BlogView, AboutView, ContactView, PostView, Login, RegisterView, ProfileView, \
-    CreatePostView, ChangePasswordView, GeneratePdf, activate, test, ResetPasswordView
+    CreatePostView, ChangePasswordView, GeneratePdf, activate, test, ResetPasswordView, MyPosts
 
 urlpatterns = [
     path('', MainView.as_view(), name='main_view'),
@@ -24,6 +24,7 @@ urlpatterns = [
     path('password-reset-complete/',
          PasswordResetCompleteView.as_view(template_name='app1/password_reset_complete.html'),
          name='password_reset_complete'),
+    path('myposts', MyPosts.as_view(), name='myposts'),
     path('test', test, name='test'),
 
 ]

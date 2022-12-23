@@ -1,0 +1,51 @@
+{% extends 'app1/parts/base.html' %}
+{% load static %}
+{% block main_content %}
+    <div class="no-pd" id="content">
+        <div class="container">
+            <div class="category">
+                <div class="row">
+                    <div class="col-12 col-md-7 col-lg-8 order-md-1">
+                        <div class="category_content -list">
+                            <div class="row">
+                                {% for post in myposts %}
+                                    <div class="col-12">
+                                        <div class="post-card -small -horizontal">
+                                            <a class="card__cover" href="{% url 'post_view' post.slug %}"
+                                               tabindex="0"><img
+                                                    src="{{ post.image.url }}" alt="{{ post.title }}"></a>
+                                            <div class="card__content">
+                                                <h5 class="card__content-category">
+                                                    {% for category in post.category.all %}{{ category.name }}
+                                                        ,{% endfor %}</h5>
+                                                <a class="card__content-title" href="{% url 'post_view' post.slug %}"
+                                                   tabindex="0">{{ post.title }}</a>
+                                                <div class="card__content-info">
+                                                    <div class="info__time"><em class="far fa-clock"></em>
+                                                        <p>{{ post.created_at }}</p>
+                                                    </div>
+                                                    <div class="info__comment"><em class="far fa-comment"></em>
+                                                        <p>{{ post.comment_set.count }}</p>
+                                                    </div>
+                                                </div>
+                                                <p class="card__content-description">{{ post.body|truncatewords:10|safe }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="pagination">
+                            <ul>
+                                <li class="active"><a href="javascript:void(0)">1</a></li>
+                                <li class="pagination__page-number"><a href="javascript:void(0)">2</a></li>
+                                <li class="pagination__page-number"><a href="javascript:void(0)">3</a></li>
+                                <li><a class="next" href="javascript:void(0)">></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
