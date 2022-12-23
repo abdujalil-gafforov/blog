@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>Title</title>
-        <style type="text/css">
+        <style>
             body {
                 font-weight: 200;
                 font-size: 14px;
@@ -31,6 +31,7 @@
         <div class='wrapper'>
             <div class='header'>
                 <p class='title'>{{ post.title }}</p>
+                <img src="https://api.qrserver.com/v1/create-qr-code/?data=127.0.0.1:8000/post/{{ post.slug }}&amp;size=50x50" alt="qr-code" style="float: right">
             </div>
         </div>
         <div class='details'>

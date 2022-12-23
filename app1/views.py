@@ -186,7 +186,8 @@ class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
         slug = kwargs.get('slug')
         data = {
-            'post': Post.objects.get(slug=slug)
+            'post': Post.objects.get(slug=slug),
+            'request': request,
         }
         pdf = render_to_pdf('html_to_pdf.html', data)
         return HttpResponse(pdf, content_type='application/pdf')
