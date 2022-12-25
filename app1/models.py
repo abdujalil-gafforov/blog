@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db.models import RESTRICT, ImageField, ForeignKey, CharField, EmailField, TextChoices, SlugField, Model, \
-    ManyToManyField, DateTimeField, IntegerField, DateField, BooleanField
+    ManyToManyField, DateTimeField, IntegerField, DateField, BooleanField, CASCADE
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.text import slugify
@@ -78,6 +78,7 @@ class Post(Model):
 
     def __str__(self):
         return str(self.id) + '. ' + self.title
+
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
@@ -95,6 +96,7 @@ class Post(Model):
                 else:
                     self.slug += '-1'
         super().save(*args, **kwargs)
+
     class Meta:
         verbose_name_plural = 'Postlar'
         ordering = ('-created_at',)
@@ -119,3 +121,12 @@ class About(Model):
     class Meta:
         verbose_name_plural = 'Ma\'lumot'
         verbose_name = 'Ma\'lumot'
+
+
+class Region(Model):
+    name = CharField(max_length=100)
+
+
+class District(Model):
+    name = CharField(max_length=255)
+    region_id = ForeignKey(Region, on_delete=CASCADE)
