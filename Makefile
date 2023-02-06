@@ -1,5 +1,6 @@
 mig:
 	./manage.py makemigrations
 	./manage.py migrate
-hello:
-	@echo "hello"
+
+admin:
+	python3 manage.py createsuperuser --noinput
