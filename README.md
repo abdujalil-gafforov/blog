@@ -4,10 +4,24 @@ This project is a minimalistic blog website built using **Django**.
 
 ## Features
 
+- User registration and authentication
+- Social login via Google and GitHub
+- Phone number verification using SMS OTP
 - Create, edit, and delete posts
-- User authentication and authorization
-- Commenting feature for posts
-- Categorization of posts by category
+- Download posts as PDFs with QR codes
+- View trending posts (most viewed in the last month)
+- Responsive pagination
+- Auto-deletion of posts cancelled for more than 7 days
+
+## Technologies Used
+
+- **Backend**: Django, PostgreSQL
+- **Frontend**: CKEditor, SweetAlert2
+- **Asynchronous Tasks**: Celery, Redis
+- **SMS Services**: Twilio
+- **Version Control**: Git, GitHub
+- **Monitoring**: Sentry
+- **Containerization**: Docker
 
 ## Installation
 
@@ -53,9 +67,10 @@ This project is a minimalistic blog website built using **Django**.
 
 ## Usage
 
-- Access the admin panel at: `http://127.0.0.1:8000/admin/`
-- Use the admin panel to create, edit, and delete posts.
-- Users can view posts and leave comments through the website.
+- **Admin Panel**: Access the admin panel at `http://127.0.0.1:8000/admin/` to manage posts, users, and other administrative tasks.
+- **Manage Posts**: Users can create, edit, and delete posts.
+- **Comments**: Users can leave comments on posts.
+- **PDF Download**: Each post can be downloaded as a PDF, allowing offline viewing or sharing.
 
 ## Contributing
 
