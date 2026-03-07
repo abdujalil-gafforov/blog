@@ -45,6 +45,6 @@ typing_extensions==4.4.0
 tzdata==2022.7
 tzlocal==4.2
 uritools==4.0.1
-urllib3==1.26.18
+urllib3==1.26.19
 webencodings==0.5.1
 xhtml2pdf==0.2.9
